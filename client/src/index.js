@@ -61,6 +61,17 @@ class User {
         console.log(`User's email: ${this.email}`);
         console.log(`User's phone: ${this.phone}`);
     }
+
+    // Return data in json
+    json() {
+        return {
+            fullName: this.fullName,
+            username: this.username,
+            email: this.email,
+            phone: this.phone,
+            password: this.password
+        };
+    }
 }
 
 
@@ -76,6 +87,16 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
     password = document.getElementById("myPassword").value;
 
     // Create a new User instance after the button is clicked
-    const user1 = new User(fullName, username, email, phone, password);     
+    const user1 = new User(fullName, username, email, phone, password);
     user1.displayInfo();
+    fetch('http://localhost:3000/login', {
+        method: 'POST',
+        body: JSON.stringify(user1.json()),
+        headers: { 'Content-Type': 'application/json' }
+    }).then(response => response.json()).then(data => {
+        console.log(data);
+        const messageElement = document.createElement('p');
+        messageElement.innerHTML = data.message;
+        document.body.appendChild(messageElement);
+    });
 };

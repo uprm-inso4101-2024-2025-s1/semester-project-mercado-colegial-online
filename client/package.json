@@ -1,5 +1,5 @@
 {
-    "name": "my-project",
+    "name": "mercado-colegial-online-client",
     "version": "1.0.0",
     "scripts": {
       "start": "node index.js"
