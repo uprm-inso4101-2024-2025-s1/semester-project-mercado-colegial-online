@@ -22,9 +22,20 @@
     <input id="myPhone"><br>
 
     <label> Password:</label>
-    <input id="myPassword"><br>
+    <input type="password" id="myPassword"><br>
+    <input type="checkbox" onclick="toggleVis()">Show Password
 
-
+    <script>
+        function toggleVis(){
+            var i = document.getElementById("myPassword");
+        if(i.type == "password"){
+            i.type = "text";
+        }
+        else {
+            i.type = "password";
+        }
+        }
+    </script>
 
     <button id="mySubmit">submit</button>
 
