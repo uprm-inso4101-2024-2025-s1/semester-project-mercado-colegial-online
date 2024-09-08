@@ -10,9 +10,9 @@ app.use(cors());
 
 app.post('/login', (req, res) => {
     const receivedData = req.body;
-    console.log('Login data received from client:', receivedData);
+    console.log('Sign Up data received from client:', receivedData);
 
-    res.json({ message: 'Logged in successfully', data: receivedData });
+    res.json({ message: 'Signed Up successfully', data: receivedData });
 });
 
 app.listen(port, () => {
