@@ -78,6 +78,7 @@ class User {
 
 
 let fullName, username, email, phone, password;
+let userArray = [];                                             //Initialize userArray for local storage
 
 document.getElementById("mySubmit").onclick = function() {      //takes user input
     fullName = document.getElementById("myName").value;
@@ -89,6 +90,8 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
     // Create a new User instance after the button is clicked
     const user1 = new User(fullName, username, email, phone, password);
     user1.displayInfo();
+    userArray.push(user1);                                      //Adds user1 to userArray
+    console.log('Users Array', {userArray});                    
     fetch('http://localhost:3000/login', {
         method: 'POST',
         body: JSON.stringify(user1.json()),
@@ -99,4 +102,7 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
         messageElement.innerHTML = data.message;
         document.body.appendChild(messageElement);
     });
+
+    //Saving to local storage
+   localStorage.setItem('LocalUsersArray',JSON.stringify(userArray));
 };
