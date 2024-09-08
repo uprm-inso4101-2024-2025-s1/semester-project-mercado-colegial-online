@@ -8,7 +8,7 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-app.post('/login', (req, res) => {
+app.post('/signup', (req, res) => {
     const receivedData = req.body;
     console.log('Sign Up data received from client:', receivedData);
 

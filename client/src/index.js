@@ -95,7 +95,7 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
         user1.displayInfo();
         userArray.push(user1);                                      //Adds user1 to userArray
         console.log('Users Array', {userArray});                    
-        fetch('http://localhost:3000/login', {
+        fetch('http://localhost:3000/signup', {
             method: 'POST',
             body: JSON.stringify(user1.json()),
             headers: { 'Content-Type': 'application/json' }
