@@ -11,7 +11,12 @@ function validatePassword(){
     const number = /\d/.test(password);
     const specialChar = /[-_@#$^*+.!=%()]/.test(password);
     const length = password.length >= 8 && password.length <= 30;
-    const commonSequences = !(/123|abc|qwerty|4444/.test(password));
+    const commonSequences = [
+        "123", "abc", "qwerty", "password", "asdf", "zxcv",
+        "0000", "1111", "2222", "3333", "abcd", "5678", "9876", "54321",
+        "123456", "admin", "12345678", "123456789", "password",
+        "Aa123456", "1234567890", "UNKNOWN", "Password", "Admin123", "user"
+    ];
 
     let errorMessages = [];
 
@@ -32,12 +37,16 @@ function validatePassword(){
     if (!specialChar){
         errorMessages.push("Password must contain at least one special character.");
     }
-    if (!commonSequences){
-        errorMessages.push("Password contains a common sequence (e.g., 'abc', '123', 'qwerty').");
-    }
+
+    commonSequences.forEach(seq => {
+        if (password.toLowerCase().includes(seq)) {
+            errorMessages.push(`Password contains a common sequence: '${seq}'`);
+        }
+    });
 
     if (errorMessages.length > 0) {
         passwordError.innerHTML = errorMessages.join("<br>");
+        passwordError.style.color = "red";
         return false;
     } else {
         passwordError.textContent = "Password is valid!";
