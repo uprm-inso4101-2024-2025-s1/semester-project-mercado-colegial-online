@@ -11,12 +11,18 @@ function validatePassword(){
     const number = /\d/.test(password);
     const specialChar = /[-_@#$^*+.!=%()]/.test(password);
     const length = password.length >= 8 && password.length <= 30;
-    const commonSequences = [
-        "123", "abc", "qwerty", "password", "asdf", "zxcv",
-        "0000", "1111", "2222", "3333", "abcd", "5678", "9876", "54321",
-        "123456", "admin", "12345678", "123456789", "password",
-        "Aa123456", "1234567890", "UNKNOWN", "Password", "Admin123", "user"
-    ];
+    // Detect repetitive characters
+    const repetitiveChar = /(.)\1{3,}/.test(password); // Detect any character repeated 4 or more times
+
+    // Check for common sequences (e.g., '123', 'abc', 'qwerty')
+    const hasSequentialChars = (password) => {
+        const seqRegex = /(012|123|234|345|456|567|678|789|890|abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz)/i;
+        return seqRegex.test(password);
+    };
+
+    // Check against a list of common passwords
+    const commonPasswords = ["password", "welcome", "admin", "user", "test", "letmein", "123456", "iloveyou"];
+    const isCommonPassword = commonPasswords.includes(password.toLowerCase());
 
     let errorMessages = [];
 
@@ -38,11 +44,17 @@ function validatePassword(){
         errorMessages.push("Password must contain at least one special character.");
     }
 
-    commonSequences.forEach(seq => {
-        if (password.toLowerCase().includes(seq)) {
-            errorMessages.push(`Password contains a common sequence: '${seq}'`);
-        }
-    });
+    if (repetitiveChar) {
+        errorMessages.push("Password contains repetitive characters (e.g., 'aaaa', '1111').");
+    }
+    // Sequential pattern detection
+    if (hasSequentialChars(password)) {
+        errorMessages.push("Password contains a sequential pattern (e.g., '123', 'abc').");
+    }
+    // Common password detection
+    if (isCommonPassword) {
+        errorMessages.push("Password is too common.");
+    }
 
     if (errorMessages.length > 0) {
         passwordError.innerHTML = errorMessages.join("<br>");
