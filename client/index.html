@@ -24,7 +24,11 @@
     <label> Password:</label>
     <input type="password" id="myPassword"><br>
     <input type="checkbox" onclick="toggleVis()">Show Password
+    <br>
+    <div id="passwordError" style="color: red;"></div>
 
+    <button id="mySubmit">submit</button>
+    
     <script>
         function toggleVis(){
             var i = document.getElementById("myPassword");
@@ -37,11 +41,12 @@
         }
     </script>
 
-    <button id="mySubmit">submit</button>
+    
 
 
 
 
     <script src="src/index.js"> </script>
+    <script src="src/passwordValidation.js"></script>
 </body>
 </html>

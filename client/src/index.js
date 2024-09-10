@@ -90,6 +90,15 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
     // Validate that all required fields were filled
     if(fullName!="" && username!="" && email!="" && phone!="" && password!=""){
 
+        const passwordError = document.getElementById("passwordError");
+        passwordError.textContent = "";
+
+        const isPasswordValid = validatePassword();
+
+        if (!isPasswordValid){
+            return;
+        }
+
         // Create a new User instance after the button is clicked
         const user1 = new User(fullName, username, email, phone, password);
         user1.displayInfo();
