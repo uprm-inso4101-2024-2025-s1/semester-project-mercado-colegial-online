@@ -1,0 +1,3 @@
+# This file is to then upload to main server 
+ErrorDocument 404 /not-found-page.html
+ErrorDocument 500 /internal-server-error-page.html
