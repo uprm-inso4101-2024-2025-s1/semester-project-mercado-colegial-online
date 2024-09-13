@@ -88,13 +88,19 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
 //Web Dev Team work here
 
 import { createRouter, createWebHistory } from 'vue-router';
-import Welcome from '../components/Welcome.vue';
+import Welcome from '../views/Welcome.vue';
+import Home from '../views/Home.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Welcome',
     component: Welcome,
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home,
   },
 ];
 
