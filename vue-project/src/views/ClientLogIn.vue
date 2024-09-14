@@ -59,7 +59,6 @@ export default {
 
 <style scoped>
 body {
-    background-color: rgb(255, 5, 5);
     color: black;
     font-family: Arial, sans-serif;
 }
@@ -77,8 +76,8 @@ body {
     flex-direction: column;
     justify-content: center; /* Center elements vertically */
     align-items: center; /* Center elements horizontally */
-    padding: 10%;
-    width: 100%; /* Optional: Set width to take the full available space */
+    padding: 10px;
+    height: 85vh
 }
 
 .formElement {
