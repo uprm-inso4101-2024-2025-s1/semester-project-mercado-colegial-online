@@ -90,6 +90,7 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
 import { createRouter, createWebHistory } from 'vue-router';
 import Welcome from '../views/Welcome.vue';
 import Home from '../views/Home.vue';
+import ClientLogIn from '../views/ClientLogIn.vue';
 import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDashboard component
 
 const routes = [
@@ -102,6 +103,11 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/clientlogin',
+    name: 'ClientLogIn',
+    component: ClientLogIn,
   },
   {
     path: '/seller-dash',  // New route for the Seller Dashboard

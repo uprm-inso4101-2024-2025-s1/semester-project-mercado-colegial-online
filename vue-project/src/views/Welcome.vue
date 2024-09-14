@@ -2,7 +2,7 @@
   <div class="welcome-container">
     <h1 class="title">Mercado Colegial</h1>
     <div class="buttons">
-      <router-link to="/home">
+      <router-link to="/clientlogin">
         <button class="btn cliente">Cliente</button>
       </router-link>
       <router-link to="/home">
@@ -18,7 +18,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 body {
   background-color: white;
   color: black;
