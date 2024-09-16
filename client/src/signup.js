@@ -46,7 +46,7 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
     } else{
 
         // If all fields were not filled, error message is displayed and no user is created
-        console.log("Required sing up information is missing")
+        console.log("Required sign up information is missing")
         const errorMessage = document.createElement('p');
         errorMessage.id = "errorMessage"
         errorMessage.innerHTML = "Please fill in all fields to continue";
