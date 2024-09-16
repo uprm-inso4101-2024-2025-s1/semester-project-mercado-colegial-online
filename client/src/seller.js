@@ -1,4 +1,4 @@
-import User from "./index.js";
+import User from "./user.js";
 
 class Seller extends User {
     static sellerCount = 0;  // Counter for sellers
