@@ -5,7 +5,7 @@
       <router-link to="/clientlogin">
         <button class="btn cliente">Cliente</button>
       </router-link>
-      <router-link to="/home">
+      <router-link to="/sellerlogin">
         <button class="btn vendedor">Vendedor</button>
       </router-link>
     </div>

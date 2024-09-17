@@ -3,8 +3,12 @@
     <div class="header">
       <h1>Seller Dashboard</h1>
       <div>
-        <button class="home-btn" @click="navigateTo('home')">Home</button>
-        <button class="product-list-btn" @click="navigateTo('product-listing')">Product Listing</button>
+        <router-link to="/home">
+          <button class="home-btn">Home</button>
+        </router-link>
+        <router-link to="/product-listing">
+          <button class="product-list-btn">Product Listing</button>
+        </router-link>
       </div>
     </div>
 
