@@ -36,3 +36,34 @@ exports.getItemById = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+// Update an Item by ID
+exports.updateItemById = async (req, res) => {
+  try {
+    const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,  // Return the updated document
+      runValidators: true,  // Validate the data before updating
+    });
+    if (!updatedItem) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    res.status(200).json(updatedItem);
+  } catch (error) {
+    console.error('Error updating item by ID:', error);  // Log the error details
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// Delete an Item by ID
+exports.deleteItemById = async (req, res) => {
+  try {
+    const deletedItem = await Item.findByIdAndDelete(req.params.id);
+    if (!deletedItem) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    res.status(200).json({ message: 'Item deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting item by ID:', error);  // Log the error details
+    res.status(500).json({ error: error.message });
+  }
+};
