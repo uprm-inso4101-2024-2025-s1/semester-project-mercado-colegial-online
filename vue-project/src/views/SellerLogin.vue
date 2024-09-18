@@ -15,6 +15,37 @@
             </div>
         </form>
     </div>
+    
+    <div class="seller-signUp">
+        <h2 class="subtitle">First Time Here? Join Now</h2>
+        <form @submit.prevent="signUp">
+            <div class="form">
+                <div class="formElement">
+                    <label for="firstName">First Name:</label>
+                    <input v-model="firstName" type="text" id="firstName" placeholder="Enter your first name" required />
+                </div>
+                <div class="formElement">
+                    <label for="lastName">Last Name:</label>
+                    <input v-model="lastName" type="text" id="lastName" placeholder="Enter your last name" required />
+                </div>
+                <div class="formElement">
+                    <label for="institutionalEmail">Institutional Email:</label>
+                    <input v-model="institutionalEmail" type="email" id="institutionalEmail" placeholder="Enter your institutional email" required />
+                </div>
+                <div class="formElement">
+                    <label for="studentNumber">Student Number:</label>
+                    <input v-model="studentNumber" type="text" id="studentNumber" placeholder="Enter your student number" required />
+                </div>
+                <div class="formElement">
+                    <label for="signUpPassword">Password:</label>
+                    <input v-model="signUpPassword" type="password" id="signUpPassword" placeholder="Create a password" required />
+                </div>
+                <div class="formElement">
+                    <button class="btn" type="submit">Join Now</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </template>
 
 <script>
@@ -22,7 +53,13 @@ export default {
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            errorMessage: "",
+            firstName: "",
+            lastName: "",
+            institutionalEmail: "",
+            studentNumber: "",
+            signUpPassword: "",
         };
     },
     methods: {
@@ -35,8 +72,18 @@ export default {
             } else {
                 alert('Invalid email or password.');
             }
+        },
+        handlesignUp() {
+            // Handle sign-up logic here
+            if (!this.firstName || !this.lastName || !this.institutionalEmail || !this.studentNumber || !this.signUpPassword) {
+                this.errorMessage = "All fields are required to sign up.";
+                return;
+            }
+
+            alert(`Welcome, ${this.firstName}! Your account has been created.`);
+            this.$router.push('/seller-dash');
         }
-    }
+    },
 };
 </script>
 
