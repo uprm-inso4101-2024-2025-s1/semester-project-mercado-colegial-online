@@ -11,6 +11,14 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
     // Validate that all required fields were filled
     if(fullName!="" && username!="" && email!="" && phone!="" && password!=""){
 
+        // Validate that username, email and phone input follow correct format
+        const formatErrorMessages = document.getElementById("formatErrorMessages");
+        formatErrorMessages.textContent = "";
+        const isInputFormatted = validateInputFormat();
+        if(!isInputFormatted){
+            return;
+        }
+
         const passwordError = document.getElementById("passwordError");
         passwordError.textContent = "";
 
