@@ -53,9 +53,10 @@ app.post('/login', (req, res) => {
 
     const hashedPass = hashPassword(password,user.salt);
 
+    console.log(user);
     console.log(`Original Password: ${password}`);
     console.log(`Hashed Password: ${hashedPass}`);
-    console.log(`Salt: ${salt}`);
+    console.log(`Salt: ${user.salt}`);
 
     if (user.password !== hashedPass) {
         return res.status(401).json({ message: 'Invalid credentials' });
