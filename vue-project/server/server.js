@@ -29,6 +29,12 @@ app.post('/signup', (req, res) => {
     const salt = generateSalt();
     const hashedPass = hashPassword(password,salt);
 
+
+    //test
+    console.log(`Original Password: ${password}`);
+    console.log(`Hashed Password: ${hashedPass}`);
+    console.log(`Salt: ${salt}`);
+
     users.push({ ...receivedData, password: hashedPass, salt });
 
     res.json({ message: 'Signed Up successfully', data: receivedData });
@@ -45,8 +51,11 @@ app.post('/login', (req, res) => {
         return res.status(404).json({ message: 'User not found' });
     }
 
-    const salt = generateSalt();
     const hashedPass = hashPassword(password,user.salt);
+
+    console.log(`Original Password: ${password}`);
+    console.log(`Hashed Password: ${hashedPass}`);
+    console.log(`Salt: ${salt}`);
 
     if (user.password !== hashedPass) {
         return res.status(401).json({ message: 'Invalid credentials' });

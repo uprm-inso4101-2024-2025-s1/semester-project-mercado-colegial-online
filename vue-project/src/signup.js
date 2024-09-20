@@ -11,6 +11,8 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
     // Validate that all required fields were filled
     if(fullName!="" && username!="" && email!="" && phone!="" && password!=""){
 
+        const hashedPassword = CryptoJS.SHA512(password).toString();
+
         // Validate that username, email and phone input follow correct format
         const formatErrorMessages = document.getElementById("formatErrorMessages");
         formatErrorMessages.textContent = "";
@@ -31,6 +33,9 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
         // Create a new User instance after the button is clicked
         const user1 = new User(fullName, username, email, phone, password);
         user1.displayInfo();
+
+        console.log(`hashedPassword: ${hashedPassword}`);
+
         userArray.push(user1);                                      //Adds user1 to userArray
         console.log('Users Array', {userArray});                    
         fetch('http://localhost:3000/signup', {
