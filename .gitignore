@@ -1,13 +1,12 @@
 # Node.js dependencies
 **/node_modules/
-node_modules/
 
 # Logs
 logs/*
 !logs/.gitkeep
 
 # Environment variables
-.env
+*.env
 
 # IDE-specific files
 .vscode/

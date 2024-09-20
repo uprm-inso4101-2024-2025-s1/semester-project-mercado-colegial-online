@@ -1,0 +1,26 @@
+{
+    "version": "2.0",
+    "projectName": "Mercado Colegial Online",
+    "managers": ["david-baez-bravo","NatiPerez459"],
+    "milestones": {
+      "Milestone #1": {
+        "startDate": "2024-08-30",
+        "endDate": "2024-09-20",
+        "projectedGroupGrade": 100.0
+      },
+      "Milestone #2": {
+        "startDate": "2024-09-20",
+        "endDate": "2024-10-25",
+        "projectedGroupGrade": 100.0
+      },
+      "Milestone #3": {
+        "startDate": "2024-10-25",
+        "endDate": "2024-11-27",
+        "projectedGroupGrade": 100.0
+      }
+    },
+    "lectureTopicTaskQuota": 4,
+    "countOpenIssues": false,
+    "sprints": 1,
+    "minTasksPerSprint": 1
+  }
