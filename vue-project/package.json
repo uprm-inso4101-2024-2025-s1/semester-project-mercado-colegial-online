@@ -7,28 +7,27 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "concurrently \"npm run start-frontend\" \"npm run start-backend\"", 
+    "start": "concurrently \"npm run start-frontend\" \"npm run start-backend\"",
     "start-frontend": "vite",
-    "start-backend": "node server.js", 
+    "start-backend": "node server/server.js",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
-    "vue": "^3.4.29",
-    "vue-router": "^4.0.13",
     "express": "^4.19.2",
-    "mongodb": "^4.17.2",
-    "mongoose": "^8.6.2",
-    "body-parser": "^1.20.3",
-    "cors": "^2.8.5"
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.0",
+    "vue": "^3.4.29",
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
-    "eslint": "^8.57.0",
+    "concurrently": "^9.0.1",
+    "eslint": "^9.11.1",
     "eslint-plugin-vue": "^9.23.0",
-    "vite": "^5.4.5",
-    "concurrently": "^8.0.1"
-
+    "vite": "^5.4.5"
   }
 }

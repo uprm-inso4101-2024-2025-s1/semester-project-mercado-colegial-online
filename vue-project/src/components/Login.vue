@@ -19,7 +19,7 @@
   </template>
   
   <script>
-  import User from '../User.js'; // Import the User class
+  import User from '../user.js'; // Import the User class
   import CryptoJS from 'crypto-js';
 
   export default {

@@ -92,7 +92,7 @@ import Welcome from '../views/Welcome.vue';
 import Home from '../views/Home.vue';
 import ClientLogIn from '../views/ClientLogIn.vue';
 import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDashboard component
-import SellerLogIn from '../views/SellerLogIn.vue';  // Import the SellerLogIn component
+import SellerLogIn from '../views/SellerLogin.vue';  // Import the SellerLogIn component
 
 const routes = [
   {

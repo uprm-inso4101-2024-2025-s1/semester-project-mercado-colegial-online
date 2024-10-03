@@ -31,3 +31,6 @@ coverage
 node_modules/
 
 package-lock.json
+
+# Database credentials won't be exposed in source code or vs control
+.env

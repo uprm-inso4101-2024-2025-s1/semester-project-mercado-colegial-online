@@ -1,17 +1,30 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+/** Project now uses ES module syntax, stated in our package.json */
 
-const crypto = require('crypto');
+/** ES modules */
+import express from "express";
+import bodyParser from "body-parser";
+import cors from 'cors'; 
+import crypto from 'crypto'; 
+import dotenv from 'dotenv'; 
 
+/** Express App setup */
 const app = express();
 const port = 3000;
 
-const users = [];
+/** For temporary stored user data */
+const users = [];   
 
+/** Middleware  */
+
+/** Parses incoming JSON request bodies to make it easier to handle data */
 app.use(bodyParser.json());
+/** Enables Cross-Origin Resoruce Sharing, 
+ * which allows the backend to handle 
+ * requests from other domains
+ */
 app.use(cors());
 
+/** Password Hashing Utilities */
 function hashPassword(password, salt){
     return crypto.pbkdf2Sync(password,salt,1000,64,'sha512').toString('hex');
 }
@@ -19,6 +32,50 @@ function generateSalt(){
     return crypto.randomBytes(16).toString('hex');
 }
 
+/** Mongodb Connection */
+
+/**
+ * MongoClient connects to our MongoDB Atlas cluster
+ */
+import { MongoClient, ServerApiVersion } from "mongodb";
+dotenv.config(); 
+const uri = process.env.MONGODB_URI; 
+
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
+/**
+ * Handles the connection to MongoDB, this sends a "ping" to confirm a successful 
+ * connection, and closes the connection
+ */
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);
+
+
+/** Signup Route */
+
+/**
+ * Handles user signup, hashes the user password before storing it with a unique 
+ * salt, and then adds the user to the 'users' array stored globally above.
+ * 
+ * A response is then sent back confirming successful signup.
+ */
 app.post('/signup', (req, res) => {
     const receivedData = req.body;
 
@@ -40,6 +97,16 @@ app.post('/signup', (req, res) => {
     res.json({ message: 'Signed Up successfully', data: receivedData });
 });
 
+
+/** Login Route */
+
+/**
+ * Handles user login ,checks if the username exists and hashes the provided
+ * password with the stored salt. 
+ * 
+ * If the hashed password mathces, the suer is successfully logged in; 
+ * 
+ */
 app.post('/login', (req, res) => {
     const receivedData = req.body;
 
@@ -65,6 +132,11 @@ app.post('/login', (req, res) => {
     res.json({ message: 'Logged In successfully', data: receivedData });
 })
 
+/** Starting the Server */
+
+/**
+ * Server starts here, and listens for requests on port 3000
+ */
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
