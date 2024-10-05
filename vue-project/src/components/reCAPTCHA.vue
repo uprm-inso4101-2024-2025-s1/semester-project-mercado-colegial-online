@@ -1,17 +1,13 @@
 <template>
 	<div>
-	  <h1 id="myH1">Log in</h1>
-	  <h2><a href="./reCAPTCHA.html">Click here to sign up</a></h2>
+	  <h1 id="myH1">reCAPTCHA</h1>
+	  <h2><a href="./signup.html">Click here to sign up</a></h2>
   
 	  <label>Username:</label>
 	  <input v-model="username" id="myUsername"><br>
-  
-	  <label>Password:</label>
-	  <input type="password" v-model="password" id="myPassword"><br>
-	  <input type="checkbox" @click="togglePasswordVisibility">Show Password
-	  <br>
-  
-	  <button @click="submitForm">Submit</button>
+	  <input type="checkbox" @click="togglePasswordVisibility">Are you human?<br>
+	  <button @click="submitForm">Submit</button><br>
+      <label>"getRandomcolor"</label>
   
 	  <p v-if="errorMessage">{{ errorMessage }}</p>
 	  <p v-if="successMessage">{{ successMessage }}</p>
@@ -34,14 +30,14 @@
 	  };
 	},
 	methods: {
-	  togglePasswordVisibility() {
-		const passwordField = document.getElementById("myPassword");
-		if (passwordField.type === "password") {
-		  passwordField.type = "text";
-		} else {
-		  passwordField.type = "password";
-		}
-	  },
+  getRandomcolor() {
+  const letter = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letter[Math.floor(Math.random() * 16)];
+  }
+  return color;
+},
 	  submitForm() {
 		if (this.username !== "" && this.password !== "") {
 		  const hashedPassword = CryptoJS.SHA512(this.password).toString();
