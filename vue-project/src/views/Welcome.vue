@@ -2,7 +2,7 @@
   <div class="welcome-container">
     <h1 class="title">Mercado Colegial</h1>
     <div class="buttons">
-      <router-link to="/clientlogin">
+      <router-link to="/ReCAPTCHAc">
         <button class="btn cliente">Cliente</button>
       </router-link>
       <router-link to="/sellerlogin">

@@ -93,6 +93,7 @@ import Home from '../views/Home.vue';
 import ClientLogIn from '../views/ClientLogIn.vue';
 import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDashboard component
 import SellerLogIn from '../views/SellerLogIn.vue';  // Import the SellerLogIn component
+import ReCAPTCHA from '../views/ReCAPTCHAC.vue';
 
 const routes = [
   {
@@ -119,6 +120,12 @@ const routes = [
     path: '/sellerlogin',  // New route for the Seller Login
     name: 'SellerLogIn',
     component: SellerLogIn,
+  },
+  {
+    path: '/reCAPTCHAC',  // New route for the reC
+    name: 'ReCAPTCHAC',
+    component: ReCAPTCHA,
+
   },
 ];
 
