@@ -30,6 +30,14 @@ const itemSchema = new mongoose.Schema({
     type: String,
     maxlength: 1000,  
   },
+  category: {
+    type: String,
+    maxlength: 1000,  
+  },
+  size: {
+    type: String,
+    maxlength: 1000,  
+  },
 }, {
   timestamps: true  
 });
