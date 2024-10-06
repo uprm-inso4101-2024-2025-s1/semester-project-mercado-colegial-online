@@ -38,8 +38,12 @@ function generateSalt(){
  * MongoClient connects to our MongoDB Atlas cluster
  */
 import { MongoClient, ServerApiVersion } from "mongodb";
-dotenv.config(); 
-const uri = process.env.MONGODB_URI; 
+
+// dotenv.config(); 
+// const uri = process.env.MONGODB_URI; 
+
+const uri = "mongodb://mercadocolegial:M.Colegio9@cluster0-shard-00-00.vcnew.mongodb.net:27017,cluster0-shard-00-01.vcnew.mongodb.net:27017,cluster0-shard-00-02.vcnew.mongodb.net:27017/?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"
+
 
 const client = new MongoClient(uri, {
   serverApi: {
