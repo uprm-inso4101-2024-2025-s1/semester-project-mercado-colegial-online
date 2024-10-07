@@ -90,9 +90,9 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
 import { createRouter, createWebHistory } from 'vue-router';
 import Welcome from '../views/Welcome.vue';
 import Home from '../views/Home.vue';
-import ClientLogIn from '../views/ClientLogIn.vue';
-import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDashboard component
-import SellerLogIn from '../views/SellerLogin.vue';  // Import the SellerLogIn component
+import LogIn from '../views/LogIn.vue';
+import Registration from '@/views/Registration.vue';
+import SellerDashboard from '../views/SellerDash.vue';
 
 const routes = [
   {
@@ -106,19 +106,19 @@ const routes = [
     component: Home,
   },
   {
-    path: '/clientlogin',
-    name: 'ClientLogIn',
-    component: ClientLogIn,
+    path: '/login',
+    name: 'LogIn',
+    component: LogIn,
+  },
+  {
+    path: '/registration',
+    name: 'Registration',
+    component: Registration,
   },
   {
     path: '/seller-dash',  // New route for the Seller Dashboard
     name: 'SellerDash',
     component: SellerDashboard,
-  },
-  {
-    path: '/sellerlogin',  // New route for the Seller Login
-    name: 'SellerLogIn',
-    component: SellerLogIn,
   },
 ];
 
