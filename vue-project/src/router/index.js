@@ -85,7 +85,7 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
 */
 
 
-//Web Dev Team work here
+// Web Dev Team work here
 
 import { createRouter, createWebHistory } from 'vue-router';
 import Welcome from '../views/Welcome.vue';
@@ -93,6 +93,7 @@ import Home from '../views/Home.vue';
 import ClientLogIn from '../views/ClientLogIn.vue';
 import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDashboard component
 import SellerLogIn from '../views/SellerLogIn.vue';  // Import the SellerLogIn component
+import ProductListing from '../views/ProductListingSearch.vue';  // Import the Product Listing component
 
 const routes = [
   {
@@ -111,14 +112,19 @@ const routes = [
     component: ClientLogIn,
   },
   {
-    path: '/seller-dash',  // New route for the Seller Dashboard
+    path: '/seller-dash',
     name: 'SellerDash',
     component: SellerDashboard,
   },
   {
-    path: '/sellerlogin',  // New route for the Seller Login
+    path: '/sellerlogin',
     name: 'SellerLogIn',
     component: SellerLogIn,
+  },
+  {
+    path: '/productSearch',  // New route for the Product Listing Page
+    name: 'ProductListingSearch',
+    component: ProductListing,
   },
 ];
 
