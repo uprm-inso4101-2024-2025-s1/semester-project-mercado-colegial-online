@@ -93,6 +93,7 @@ import Home from '../views/Home.vue';
 import ClientLogIn from '../views/ClientLogIn.vue';
 import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDashboard component
 import SellerLogIn from '../views/SellerLogIn.vue';  // Import the SellerLogIn component
+import ProductPage from '../views/ProductPage.vue';  // Import the ProductPage component
 
 const routes = [
   {
@@ -120,6 +121,12 @@ const routes = [
     name: 'SellerLogIn',
     component: SellerLogIn,
   },
+  {
+    path: '/product/:id',  // New route for the Product Page
+    name: 'ProductPage',
+    component: ProductPage,
+    props: true,
+  }
 ];
 
 const router = createRouter({
