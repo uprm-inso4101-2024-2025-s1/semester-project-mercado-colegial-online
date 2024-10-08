@@ -94,6 +94,7 @@ import ClientLogIn from '../views/ClientLogIn.vue';
 import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDashboard component
 import SellerLogIn from '../views/SellerLogIn.vue';  // Import the SellerLogIn component
 import ProductListing from '../views/ProductListingSearch.vue';  // Import the Product Listing component
+import Cart from '../views/Cart.vue';
 
 const routes = [
   {
@@ -126,6 +127,11 @@ const routes = [
     name: 'ProductListingSearch',
     component: ProductListing,
   },
+  {
+    path: '/Cart',
+    name: '/CartPage',
+    component: Cart
+  }
 ];
 
 const router = createRouter({
