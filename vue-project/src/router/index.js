@@ -122,7 +122,7 @@ const routes = [
     component: SellerLogIn,
   },
   {
-    path: '/productSearch',  // New route for the Product Listing Page
+    path: '/productSearch',
     name: 'ProductListingSearch',
     component: ProductListing,
   },
