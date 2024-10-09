@@ -6,7 +6,7 @@ logs/*
 !logs/.gitkeep
 
 # Environment variables
-*.env
+# *.env
 
 # IDE-specific files
 .vscode/
@@ -35,7 +35,7 @@ build/
 /server/node_modules/
 
 # Logs
-/server/logs/
+/server/logs/x
 *.log
 
 # MongoDB database dump files (if any)
