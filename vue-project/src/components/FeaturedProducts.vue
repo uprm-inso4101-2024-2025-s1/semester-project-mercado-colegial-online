@@ -27,6 +27,7 @@ export default {
 <style scoped>
 .featured-products {
   text-align: left;
+  padding: 20px;
 }
 
 .title {
@@ -38,12 +39,11 @@ export default {
 .products-grid {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-  justify-content: space-between;
+  grid-template-columns: repeat(4, 1fr); /* 4 equal columns for large screens */
 }
 
+/* Product Card Styling */
 .product-card {
-  width: 200px;
   text-align: center;
   border: 1px solid #ccc;
   padding: 10px;
@@ -70,5 +70,28 @@ export default {
 .product-seller {
   font-size: 14px;
   color: #777;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr; /* 1 column for very small screens */
+  }
+
+  .product-card {
+    width: 100%;
+  }
 }
 </style>

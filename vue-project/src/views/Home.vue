@@ -2,7 +2,7 @@
   <div class="home">
     <Navbar />
     <div class="image-section">
-      <div class="search-container">
+      <div class="search-container" v-if="isDesktop">
         <SearchBar />
       </div>
     </div>
@@ -17,8 +17,8 @@
 import Navbar from "../components/Navbar.vue";
 import SearchBar from "../components/SearchBar.vue";
 import FeaturedProducts from "../components/FeaturedProducts.vue";
-import placeholderImage from "../assets/placeholder.svg"; // Import the placeholder image
-import Footer from "../components/Footer.vue"
+import placeholderImage from "../assets/placeholder.svg";
+import Footer from "../components/Footer.vue";
 
 export default {
   name: "Home",
@@ -36,7 +36,7 @@ export default {
           name: "Custom T-shirt",
           price: "$19.99",
           seller: "SHOP123",
-          image: placeholderImage, // Placeholder image
+          image: placeholderImage,
         },
         {
           id: 2,
@@ -88,7 +88,19 @@ export default {
           image: placeholderImage,
         },
       ],
+      isDesktop: window.innerWidth > 768, // Check if the initial screen size is desktop
     };
+  },
+  mounted() {
+    window.addEventListener("resize", this.handleResize); // Listen for window resize
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.handleResize); // Clean up the event listener
+  },
+  methods: {
+    handleResize() {
+      this.isDesktop = window.innerWidth > 768; // Update the flag based on screen width
+    },
   },
 };
 </script>
@@ -103,34 +115,30 @@ export default {
 }
 
 .image-section {
-  width: 100%; /* Full width of the viewport */
-  height: 80vh; /* Adjust the height as needed */
-  background-image: url("../assets/background-search.jpg"); /* Correct path to your image */
-  background-size: cover; /* Cover ensures the image fills the section */
-  background-position: center; /* Center the background image */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
+  width: 100%;
+  height: 80vh;
+  background-image: url("../assets/background-search.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center; /* Horizontally center the search bar */
-  align-items: center; /* Vertically center the search bar */
 }
 
 .search-container {
   width: 100%;
-  max-width: 600px; /* Control the max width of the search bar */
-  padding: 0 20px; /* Add some padding for responsiveness */
+  max-width: 600px;
+  padding: 0 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.search-bar {
-  width: 100%;
-}
-
 .featured-products-section {
-  margin-top: 10px; /* Add space between the search section and the products */
+  margin-top: 10px;
   padding: 20px;
 }
 </style>
