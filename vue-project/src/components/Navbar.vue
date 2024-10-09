@@ -13,7 +13,7 @@
     </div>
     <div :class="['navbar-menu', { 'is-active': menuActive }]">
       <router-link to="/" class="nav-item">Home</router-link>
-      <router-link to="/" class="nav-item">Products</router-link>
+      <router-link to="/productSearch" class="nav-item">Products</router-link>
       <router-link to="/" class="nav-item">Profile</router-link>
       <router-link to="/Cart" class="nav-item">Cart</router-link>
     </div>
