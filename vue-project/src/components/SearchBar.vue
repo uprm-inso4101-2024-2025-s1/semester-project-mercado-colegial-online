@@ -2,7 +2,7 @@
     <div class="search-bar">
       <input type="text" v-model="searchQuery" placeholder="Search" />
       <button @click="search">
-        <img src="../assets/search.png" alt="Search" class="search-icon" />
+        <router-link to="/productSearch" class="nav-item"><img src="../assets/search.png" alt="Search" class="search-icon" /></router-link>
       </button>
     </div>
   </template>
