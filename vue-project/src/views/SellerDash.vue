@@ -6,8 +6,8 @@
         <router-link to="/home">
           <button class="home-btn">Home</button>
         </router-link>
-        <router-link to="/product-listing">
-          <button class="product-list-btn">Product Listing</button>
+        <router-link to="/productSearch">
+          <button class="productSearch-btn">Product Listing</button>
         </router-link>
       </div>
     </div>

@@ -1,18 +1,25 @@
 <template>
     <div>
-      <!-- Header with Search Bar and Promotions Banner -->
-      <div class="header">
-        <h1>Product Search</h1>
-        <div class="search-bar">
-          <input type="text" v-model="searchQuery" placeholder="Search products..." />
-          <button @click="searchProducts">Search</button>
+      <header class="main-header">
+        <h1>Product Listing</h1>
+        <div class="nav-buttons">
+          <router-link to="/home">
+            <button class="nav-btn home-btn">Home</button>
+          </router-link>
+          <router-link to="/seller-dash">
+            <button class="nav-btn sellerdash-btn">Seller Dashboard</button>
+          </router-link>
         </div>
-        <div class="promo-banner">
-          <p>Don't miss out on our special discounts!</p>
-        </div>
-      </div>
-  
-      <!-- CATEGORIES Section -->
+      </header>
+      <section class="search-bar-container">
+        <input
+          type="text"
+          placeholder="Search for products..."
+          class="search-bar"
+          v-model="searchQuery"
+        />
+        <button class="search-btn" @click="searchProducts">Search</button>
+      </section>
       <div class="categories">
         <h3>Categories</h3>
         <div class="category-options" style="text-align: center;">
@@ -21,10 +28,7 @@
           </label>
         </div>
       </div>
-  
-      <!-- Main layout: Sidebar and Product Listing -->
-      <div class="main-content">
-        <!-- Collapsible Filter Sidebar -->
+        <div class="main-content">
         <div class="sidebar" :class="{ collapsed: isSidebarCollapsed }">
           <button class="toggle-btn" @click="toggleSidebar">
             {{ isSidebarCollapsed ? 'Show Filters' : 'Hide Filters' }}
@@ -42,9 +46,7 @@
             <p>Min Rating: {{ rating }} stars</p>
           </div>
         </div>
-  
-        <!-- Product Listing with View Options -->
-        <div class="product-list">
+          <div class="product-list">
           <div class="view-toggle">
             <div class="view-options">
               <button @click="setView('grid')" :class="{ active: viewMode === 'grid' }">Grid View</button>
@@ -59,8 +61,6 @@
               </select>
             </div>
           </div>
-  
-          <!-- Grid or List View Products -->
           <div :class="{ grid: viewMode === 'grid', list: viewMode === 'list' }">
             <div
               v-for="product in filteredAndSortedProducts"
@@ -73,8 +73,6 @@
               <p>Rating: {{ product.rating }} stars</p>
             </div>
           </div>
-  
-          <!-- Pagination or Load More Button -->
           <div class="pagination">
             <button @click="loadMore" v-if="!allLoaded">Load More</button>
             <div v-else>
@@ -83,8 +81,6 @@
           </div>
         </div>
       </div>
-  
-      <!-- Footer -->
       <footer>
         <p>© 2024 Mercado Colegial Online</p>
       </footer>
@@ -131,65 +127,111 @@ data() {
     isSidebarCollapsed: false,
     allLoaded: false,
     };
-},
-computed: {
+  },
+  computed: {
     filteredAndSortedProducts() {
-    let filtered = this.products.filter(product => {
+      let filtered = this.products.filter(product => {
         return (
-        (!this.selectedCategories.length || this.selectedCategories.includes(product.category)) &&
-        product.price <= this.priceRange &&
-        (!this.selectedTags.length || this.selectedTags.some(tag => product.tags.includes(tag))) &&
-        product.rating >= this.rating
+          (!this.selectedCategories.length || this.selectedCategories.includes(product.category)) &&
+          product.price <= this.priceRange &&
+          (!this.selectedTags.length || this.selectedTags.some(tag => product.tags.includes(tag))) &&
+          product.rating >= this.rating &&
+          product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
-    });
+      });
 
-    if (this.sortOption === 'price') {
+      if (this.sortOption === 'price') {
         filtered.sort((a, b) => a.price - b.price);
-    } else if (this.sortOption === 'relevance') {
-    } else if (this.sortOption === 'date') {
-    }
+      } else if (this.sortOption === 'date') {
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+      }
 
-    return filtered;
+      return filtered.slice(0, this.loadLimit);
     },
-},
-methods: {
-    searchProducts() {
-    },
+  },
+  methods: {
     toggleSidebar() {
-    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+      this.isSidebarCollapsed = !this.isSidebarCollapsed;
     },
-    setView(view) {
-    this.viewMode = view;
+    setView(mode) {
+      this.viewMode = mode;
     },
     loadMore() {
-    const currentLoadCount = this.loadedProducts.length;
-    const newProducts = this.filteredAndSortedProducts.slice(currentLoadCount, currentLoadCount + this.loadLimit);
-    this.loadedProducts.push(...newProducts);
-
-    if (newProducts.length < this.loadLimit) {
+      this.loadLimit += 10;
+      if (this.loadLimit >= this.filteredAndSortedProducts.length) {
         this.allLoaded = true;
-    }
+      }
     },
-},
-mounted() {
-    this.loadMore();
-},
+  },
 };
 </script>
   
 <style scoped>
-/* Styles for the product listing search page */
-.header {
-text-align: center;
-margin: 20px 0;
-background-color: #006400; /* Header color same as footer */
-color: white; /* Text color in header */
-padding: 20px; /* Padding for header */
-width: 100%;
+.main-header {
+  background-color: #006400;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.main-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: white;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  background-color: white;
+  color: #006400;
+  border: 2px solid #006400;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #006400;
+  color: white;
+}
+
+.search-bar-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  padding: 20px;
+  background-color: #f4fdf4;
 }
 
 .search-bar {
-display: inline-block;
+  width: 300px;
+  padding: 10px;
+  border: 2px solid #006400;
+  border-radius: 5px 0 0 5px;
+  font-size: 1rem;
+}
+
+.search-btn {
+  padding: 10px 20px;
+  background-color: #006400;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.search-btn:hover {
+  background-color: #228B22;
 }
 
 .categories {
@@ -210,16 +252,16 @@ display: flex;
 .sidebar {
 width: 250px;
 border-right: 1px solid #ccc;
-background-color: #e6f7e6; /* Background for sidebar */
+background-color: #e6f7e6;
 }
 
 .toggle-btn {
 margin-bottom: 10px;
-background-color: #228B22; /* Button color */
-color: white; /* Button text color */
+background-color: #228B22;
+color: white;
 border: none;
 padding: 10px;
-cursor: pointer; /* Pointer cursor */
+cursor: pointer;
 }
 
 .product-list {
@@ -236,11 +278,11 @@ margin-bottom: 20px;
 
 .view-options button {
 margin-right: 10px;
-background-color: #006400; /* Active button color */
-color: white; /* Button text color */
+background-color: #006400;
+color: white;
 border: none;
 padding: 10px;
-cursor: pointer; /* Pointer cursor */
+cursor: pointer;
 }
 
 .product-card {
@@ -248,7 +290,7 @@ border: 1px solid #ccc;
 padding: 10px;
 margin: 10px;
 text-align: center;
-background-color: white; /* Product card background */
+background-color: white;
 }
 
 .grid {
@@ -269,7 +311,7 @@ footer {
 width: 100%;
 text-align: center;
 padding: 20px;
-background-color: #006400; /* Footer background color */
-color: white; /* Footer text color */
+background-color: #006400;
+color: white;
 }
 </style>  
