@@ -101,6 +101,9 @@ import Navbar from "../components/Navbar.vue";
   padding: 20px;
   margin-top: 35px; /* Adjusted margin for the navbar */
   font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .cart-title {
@@ -117,6 +120,7 @@ import Navbar from "../components/Navbar.vue";
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  flex: 1;
 }
 
 /* Left column: Cart items */
@@ -175,6 +179,7 @@ import Navbar from "../components/Navbar.vue";
   background-color: #f9f9f9;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
 }
 
 .cart-summary h3 {
@@ -281,4 +286,14 @@ import Navbar from "../components/Navbar.vue";
     margin-right: 0;
   }
 }
+footer {
+  background-color: #f9f9f9; /* Your desired footer background color */
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
 </style>
