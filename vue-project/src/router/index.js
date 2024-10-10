@@ -93,6 +93,7 @@ import Home from '../views/Home.vue';
 import ClientLogIn from '../views/ClientLogIn.vue';
 import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDashboard component
 import SellerLogIn from '../views/SellerLogin.vue';  // Import the SellerLogIn component
+import Settings from '@/views/Settings.vue';
 
 const routes = [
   {
@@ -119,6 +120,11 @@ const routes = [
     path: '/sellerlogin',  // New route for the Seller Login
     name: 'SellerLogIn',
     component: SellerLogIn,
+  },
+  {
+    path: '/settings',  // New route for the Seller Login
+    name: 'Settings',
+    component: Settings,
   },
 ];
 
