@@ -94,6 +94,7 @@ import ClientLogIn from '../views/ClientLogIn.vue';
 import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDashboard component
 import SellerLogIn from '../views/SellerLogin.vue';  // Import the SellerLogIn component
 import Settings from '@/views/Settings.vue';
+import ProductPage from '../views/ProductPage.vue';  // Import the ProductPage component
 
 const routes = [
   {
@@ -126,6 +127,12 @@ const routes = [
     name: 'Settings',
     component: Settings,
   },
+  {
+    path: '/product/:id',  // New route for the Product Page
+    name: 'ProductPage',
+    component: ProductPage,
+    props: true,
+  }
 ];
 
 const router = createRouter({

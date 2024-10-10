@@ -3,10 +3,13 @@
     <h2 class="title">Featured Products</h2>
     <div class="products-grid">
       <div v-for="product in products" :key="product.id" class="product-card">
-        <img :src="product.image" alt="Product Image" class="product-image" />
-        <h3 class="product-title">{{ product.name }}</h3>
-        <p class="product-price">{{ product.price }}</p>
-        <p class="product-seller">Sold by {{ product.seller }}</p>
+          <!-- router link envia al usuario a la pagina del producto seleccionado -->
+          <router-link :to="`/product/${product.id}`">
+          <img :src="product.image" alt="Product Image" class="product-image" />
+          <h3 class="product-title">{{ product.name }}</h3>
+          <p class="product-price">{{ product.price }}</p>
+          <p class="product-seller">Sold by {{ product.seller }}</p>
+        </router-link>
       </div>
     </div>
   </div>
