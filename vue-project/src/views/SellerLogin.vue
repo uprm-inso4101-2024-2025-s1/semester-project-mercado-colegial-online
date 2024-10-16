@@ -40,6 +40,15 @@
                     <label for="signUpPassword">Password:</label>
                     <input v-model="signUpPassword" type="password" id="signUpPassword" placeholder="Create a password" required />
                 </div>
+
+                <!-- CAPTCHA Section -->
+                <div class="formElement">
+                    <label for="captchaInput">Enter the CAPTCHA:</label>
+                    <canvas id="captchaCanvas" width="100" height="40"></canvas>
+                    <input v-model="captchaInput" type="text" id="captchaInput" placeholder="Enter CAPTCHA" required />
+                    <p v-if="captchaError" class="error">{{ captchaError }}</p>
+                </div>
+
                 <div class="formElement">
                     <button class="btn" type="submit">Join Now</button>
                 </div>
@@ -60,29 +69,64 @@ export default {
             institutionalEmail: "",
             studentNumber: "",
             signUpPassword: "",
+            captcha: "", // Stores generated CAPTCHA
+            captchaInput: "", // Stores user's CAPTCHA input
+            captchaError: "", // Displays CAPTCHA error
         };
     },
     methods: {
         handleLogin() {
-            // Handle login logic here
-            
-            if(this.email === 'example.email@gmail.com' && this.password === 'password123') {
+            if (this.email === 'example.email@gmail.com' && this.password === 'password123') {
                 alert('Login successful!');
                 this.$router.push('/seller-dash');
             } else {
                 alert('Invalid email or password.');
             }
         },
-        handlesignUp() {
-            // Handle sign-up logic here
+
+        signUp() {
             if (!this.firstName || !this.lastName || !this.institutionalEmail || !this.studentNumber || !this.signUpPassword) {
                 this.errorMessage = "All fields are required to sign up.";
                 return;
             }
 
+            // Validate CAPTCHA input
+            if (this.captchaInput !== this.captcha) {
+                this.captchaError = "Incorrect CAPTCHA. Please try again.";
+                this.refreshCaptcha(); // Generate a new CAPTCHA if input is incorrect
+                return;
+            }
+
             alert(`Welcome, ${this.firstName}! Your account has been created.`);
             this.$router.push('/seller-dash');
-        }
+        },
+
+        // Generate a new CAPTCHA
+        generateCaptcha() {
+            const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let captcha = "";
+            for (let i = 0; i < 6; i++) {
+                captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            this.captcha = captcha;
+
+            // Render the CAPTCHA on the canvas
+            const canvas = document.getElementById("captchaCanvas");
+            const ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous CAPTCHA
+            ctx.font = "20px Arial";
+            ctx.fillStyle = "green";
+            ctx.fillText(this.captcha, 10, 30); // Draw the CAPTCHA string
+        },
+
+        // Refresh the CAPTCHA (generate a new one)
+        refreshCaptcha() {
+            this.generateCaptcha();
+        },
+    },
+
+    mounted() {
+        this.generateCaptcha(); // Generate CAPTCHA when the component mounts
     },
 };
 </script>
@@ -106,7 +150,7 @@ body {
     margin-bottom: 10px;
 }
 
-.client-container {
+.seller-login, .seller-signUp {
     margin: 10px;
 }
 
@@ -155,10 +199,15 @@ input {
     padding: 5px;
     width: 100%;
     max-width: 300px;
-}
-
-.error {
+  }
+  
+  .error {
     color: red;
     margin-top: 10px;
-}
-</style>
+  }
+  
+  canvas {
+    border: 1px solid darkgreen;
+    margin-bottom: 10px;
+  }
+  </style>
