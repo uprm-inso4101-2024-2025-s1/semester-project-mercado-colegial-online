@@ -5,7 +5,7 @@
       <router-link to="/login">
         <button class="btn Login">Iniciar sesión</button>
       </router-link>
-      <router-link to="/signup">
+      <router-link to="/registration">
         <button class="btn vendedor">Registrarse </button>
       </router-link>
     </div>
