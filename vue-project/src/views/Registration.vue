@@ -140,11 +140,11 @@ export default {
         refreshCaptcha() {
             this.generateCaptcha();
         },
-        mounted() {
-            this.generateCaptcha(); // Generate CAPTCHA when the component mounts
-        },
+        
     },
-
+    mounted() {
+        this.generateCaptcha(); // Generate CAPTCHA when the component mounts
+    },
 };
 </script>
 
