@@ -1,0 +1,48 @@
+# Node.js dependencies
+**/node_modules/
+
+# Logs
+logs/*
+!logs/.gitkeep
+
+# Environment variables
+# *.env
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store  # macOS
+Thumbs.db  # Windows
+
+# Build outputs
+dist/
+build/
+
+# React build output
+/client/build/
+
+# Public/static asset files generated during build
+/client/public/*.html
+/client/public/*.map
+/client/public/static/
+
+# Coverage for test reports
+/client/coverage/
+
+# Node.js dependencies
+/server/node_modules/
+
+# Logs
+/server/logs/x
+*.log
+
+# MongoDB database dump files (if any)
+*.dump
+
+# Coverage reports
+/server/coverage/
+
+# PM2 (Process Manager for Node.js)
+.pm2/
