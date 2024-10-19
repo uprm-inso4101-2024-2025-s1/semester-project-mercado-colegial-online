@@ -95,6 +95,7 @@ import Registration from '../views/Registration.vue';
 import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDashboard component
 import Settings from '../views/Settings.vue';
 import ProductPage from '../views/ProductPage.vue';  // Import the ProductPage component
+import ProductSearchPage from '../views/ProductSearch.vue';
 
 const routes = [
   {
@@ -121,6 +122,11 @@ const routes = [
     path: '/seller-dash',  // New route for the Seller Dashboard
     name: 'SellerDash',
     component: SellerDashboard,
+  },
+  {
+    path: '/ProductSearch',
+    name: 'ProductSearch',
+    component: ProductSearchPage,
   },
   {
     path: '/settings',  // New route for the Seller Login
