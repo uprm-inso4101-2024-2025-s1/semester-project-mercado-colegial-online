@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-
-export default defineConfig({
-  plugins: [vue()],
-});
-=======
 import { fileURLToPath, URL } from 'node:url'
 import { resolve } from 'path';
 
@@ -31,4 +23,3 @@ export default defineConfig({
     }
   }
 })
->>>>>>> 0abdc6f84a32fa44197d97fe5caa549d1d196faf
