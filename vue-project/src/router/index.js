@@ -96,6 +96,7 @@ import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDash
 import Settings from '../views/Settings.vue';
 import ProductPage from '../views/ProductPage.vue';  // Import the ProductPage component
 import ProductSearchPage from '../views/ProductSearch.vue';
+import Cart from '../views/Cart.vue';
 
 const routes = [
   {
@@ -138,6 +139,11 @@ const routes = [
     name: 'ProductPage',
     component: ProductPage,
     props: true,
+  },
+  {
+    path: '/Cart',
+    name: 'CartPage',
+    component: Cart,
   }
 ];
 
