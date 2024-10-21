@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   // Mongoose automatically creates an `_id` field (ObjectId), so no need to add `user_id`
@@ -94,6 +94,4 @@ const userSchema = new mongoose.Schema({
   timestamps: true  // Automatically create `createdAt` and `updatedAt` fields
 });
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+export default mongoose.model('User', userSchema); 

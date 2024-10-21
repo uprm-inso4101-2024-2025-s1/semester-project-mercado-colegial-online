@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const itemSchema = new mongoose.Schema({
 
@@ -45,4 +45,4 @@ const itemSchema = new mongoose.Schema({
 // Create and export the model based on the schema
 const Item = mongoose.model('Item', itemSchema);
 
-module.exports = Item;
+export default Item; 

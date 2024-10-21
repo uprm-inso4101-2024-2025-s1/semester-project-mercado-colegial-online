@@ -1,7 +1,7 @@
-const Item = require('../models/item');  // Import item model
+import Item from '../models/item.js'; 
 
 // Create item
-exports.createItem = async (req, res) => {
+export const createItem = async (req, res) => {
   try {
     const newItem = new Item(req.body);
     await newItem.save();
@@ -13,7 +13,7 @@ exports.createItem = async (req, res) => {
 };
 
 // Get all Items
-exports.getAllItems = async (req, res) => {
+export const getAllItems = async (req, res) => {
   try {
     const items = await Item.find();
     res.status(200).json(items);
@@ -24,7 +24,7 @@ exports.getAllItems = async (req, res) => {
 };
 
 // Get Item by ID
-exports.getItemById = async (req, res) => {
+export const getItemById = async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
     if (!item) {
@@ -38,7 +38,7 @@ exports.getItemById = async (req, res) => {
 };
 
 // Update an Item by ID
-exports.updateItemById = async (req, res) => {
+export const updateItemById = async (req, res) => {
   try {
     const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, {
       new: true,  // Return the updated document
@@ -55,7 +55,7 @@ exports.updateItemById = async (req, res) => {
 };
 
 // Delete an Item by ID
-exports.deleteItemById = async (req, res) => {
+export const deleteItemById = async (req, res) => {
   try {
     const deletedItem = await Item.findByIdAndDelete(req.params.id);
     if (!deletedItem) {

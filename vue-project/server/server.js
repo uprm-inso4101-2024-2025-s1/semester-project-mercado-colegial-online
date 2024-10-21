@@ -1,28 +1,24 @@
-/** Project now uses ES module syntax, stated in our package.json */
-
-/** ES modules */
 import express from "express";
 import bodyParser from "body-parser";
 import cors from 'cors'; 
 import crypto from 'crypto'; 
-import dotenv from 'dotenv'; 
+import { connect } from './db.js'; 
+
+
+/** Routes */
+import itemsRouter from './routes/items.js'
 
 /** Express App setup */
 const app = express();
 const port = 3000;
 
-/** For temporary stored user data */
-const users = [];   
 
-/** Middleware  */
 
 /** Parses incoming JSON request bodies to make it easier to handle data */
-app.use(bodyParser.json());
-/** Enables Cross-Origin Resoruce Sharing, 
- * which allows the backend to handle 
- * requests from other domains
- */
-app.use(cors());
+app.use(bodyParser.json());     
+
+/** Enables Cross-Origin Resoruce Sharing, which allows the backend to handle requests from other domains */
+app.use(cors());    
 
 /** Password Hashing Utilities */
 function hashPassword(password, salt){
@@ -32,44 +28,14 @@ function generateSalt(){
     return crypto.randomBytes(16).toString('hex');
 }
 
+
 /** Mongodb Connection */
-
-/**
- * MongoClient connects to our MongoDB Atlas cluster
- */
-import { MongoClient, ServerApiVersion } from "mongodb";
-
-// dotenv.config(); 
-// const uri = process.env.MONGODB_URI; 
-
-const uri = "mongodb://mercadocolegial:M.Colegio9@cluster0-shard-00-00.vcnew.mongodb.net:27017,cluster0-shard-00-01.vcnew.mongodb.net:27017,cluster0-shard-00-02.vcnew.mongodb.net:27017/?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"
+connect()
 
 
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
+/** Routes */
+app.use('/items', itemsRouter); 
 
-/**
- * Handles the connection to MongoDB, this sends a "ping" to confirm a successful 
- * connection, and closes the connection
- */
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
 
 
 /** Signup Route */
