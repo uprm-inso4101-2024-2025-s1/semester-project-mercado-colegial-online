@@ -18,8 +18,10 @@
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.0",
+    "nodemailer": "^6.9.15",
     "vue": "^3.4.29",
     "vue-router": "^4.0.13"
   },

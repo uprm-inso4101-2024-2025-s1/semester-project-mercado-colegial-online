@@ -1,5 +1,6 @@
 class User {
     static userCount = 0;
+    validUser = false;
 
     constructor(fullName, username, email, phone, password) {
         this.fullName = fullName;
@@ -32,6 +33,10 @@ class User {
         this._password = newPassword;
     }
 
+    setValidUser(validUser) {
+        this.validUser = validUser;
+    }
+
 
     // Getters
     getFullName() {
@@ -54,12 +59,17 @@ class User {
         return this.phone;
     }
 
+    getValidUser() {
+        return this.validUser;
+    }
+
     // Display User info
     displayInfo() {
         console.log(`User's name: ${this.fullName}`);
         console.log(`User's username: ${this.username}`);
         console.log(`User's email: ${this.email}`);
         console.log(`User's phone: ${this.phone}`);
+        console.log(`User is valid: ${this.validUser}`);
     }
 
     // Return data in json
@@ -69,7 +79,8 @@ class User {
             username: this.username,
             email: this.email,
             phone: this.phone,
-            password: this.password
+            password: this.password,
+            validUser: this.validUser,
         };
     }
 }
