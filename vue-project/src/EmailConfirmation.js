@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
+import { send } from 'vite';
 
 
 //Generates the Token
@@ -11,7 +12,7 @@ const generateToken = (user) => {
 const sendEmail = async (userEmail, userId) => {
     const token = generateToken({ id: userId, email: userEmail });
 
-    const confirmURL = `http://localhost:5173/confirm/${token}`;
+    const confirmURL = `http://localhost:3000/confirm/${token}`;
 
     const sender = nodemailer.createTransport({
         service: 'Gmail',
@@ -28,7 +29,7 @@ const mailOptions = {
     html: `
       <h1>Bienvenido al Mercado Colegial Online!</h1>
       <p>Gracias por registrarte. Por favor confirma tu cuenta haciendo clic en el enlace de abajo:</p>
-      <a href="${confirmationUrl}">Confirmar mi cuenta</a>
+      <a href="${confirmURL}">Confirmar mi cuenta</a>
       <p>Este enlace expira en ? horas.</p> 
     `,
   };    
@@ -41,3 +42,5 @@ try {
 }
 
 };
+
+module.exports = { sendEmail };
