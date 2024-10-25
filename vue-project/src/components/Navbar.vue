@@ -1,19 +1,24 @@
 <template>
-    <nav class="navbar">
-      <div class="navbar-brand">
-        <a href="/" class="brand-name">
-          <span class="mercado">Mercado </span>
-          <span class="colegial">Colegial</span>
-        </a>
-      </div>
-      <div class="navbar-menu">
-        <router-link to="/" class="nav-item">Home</router-link>
-        <router-link to="/" class="nav-item">Products</router-link>
-        <router-link to="/" class="nav-item">Profile</router-link>
-        <router-link to="/" class="nav-item">Cart</router-link>
-      </div>
-    </nav>
-  </template>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="/" class="brand-name">
+        <span class="mercado">Mercado </span>
+        <span class="colegial">Colegial</span>
+      </a>
+      <button class="hamburger" @click="toggleMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+    <div :class="['navbar-menu', { 'is-active': menuActive }]">
+      <router-link to="/Home" class="nav-item">Home</router-link>
+      <router-link to="/productSearch" class="nav-item">Products</router-link>
+      <router-link to="/" class="nav-item">Profile</router-link>
+      <router-link to="/Cart" class="nav-item">Cart</router-link>
+    </div>
+  </nav>
+</template>
   
   <script>
   export default {

@@ -90,9 +90,13 @@ document.getElementById("mySubmit").onclick = function() {      //takes user inp
 import { createRouter, createWebHistory } from 'vue-router';
 import Welcome from '../views/Welcome.vue';
 import Home from '../views/Home.vue';
-import ClientLogIn from '../views/ClientLogIn.vue';
+import LogIn from '../views/LogIn.vue';
+import Registration from '../views/Registration.vue';
 import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDashboard component
-import SellerLogIn from '../views/SellerLogin.vue';  // Import the SellerLogIn component
+import Settings from '../views/Settings.vue';
+import ProductPage from '../views/ProductPage.vue';  // Import the ProductPage component
+import ProductSearchPage from '../views/ProductSearch.vue';
+import Cart from '../views/Cart.vue';
 
 const routes = [
   {
@@ -106,9 +110,14 @@ const routes = [
     component: Home,
   },
   {
-    path: '/clientlogin',
-    name: 'ClientLogIn',
-    component: ClientLogIn,
+    path: '/login',
+    name: 'LogIn',
+    component: LogIn,
+  },
+  {
+    path: '/registration',
+    name: 'Registration',
+    component: Registration,
   },
   {
     path: '/seller-dash',  // New route for the Seller Dashboard
@@ -116,10 +125,26 @@ const routes = [
     component: SellerDashboard,
   },
   {
-    path: '/sellerlogin',  // New route for the Seller Login
-    name: 'SellerLogIn',
-    component: SellerLogIn,
+    path: '/ProductSearch',
+    name: 'ProductSearch',
+    component: ProductSearchPage,
   },
+  {
+    path: '/settings',  // New route for the Seller Login
+    name: 'Settings',
+    component: Settings,
+  },
+  {
+    path: '/product/:id',  // New route for the Product Page
+    name: 'ProductPage',
+    component: ProductPage,
+    props: true,
+  },
+  {
+    path: '/Cart',
+    name: 'CartPage',
+    component: Cart,
+  }
 ];
 
 const router = createRouter({

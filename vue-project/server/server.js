@@ -12,6 +12,8 @@ import itemsRouter from './routes/items.js'
 const app = express();
 const port = 3000;
 
+/** For temporary stored user data */
+const users = [];   
 
 
 /** Parses incoming JSON request bodies to make it easier to handle data */
@@ -28,15 +30,69 @@ function generateSalt(){
     return crypto.randomBytes(16).toString('hex');
 }
 
-
 /** Mongodb Connection */
-connect()
+
+/**
+ * MongoClient connects to our MongoDB Atlas cluster
+ */
+import { MongoClient, ServerApiVersion } from "mongodb";
+
+// dotenv.config(); 
+// const uri = process.env.MONGODB_URI; 
+
+const uri = "mongodb://mercadocolegial:M.Colegio9@cluster0-shard-00-00.vcnew.mongodb.net:27017,cluster0-shard-00-01.vcnew.mongodb.net:27017,cluster0-shard-00-02.vcnew.mongodb.net:27017/?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"
 
 
-/** Routes */
-app.use('/items', itemsRouter); 
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
 
+/**
+ * Handles the connection to MongoDB, this sends a "ping" to confirm a successful 
+ * connection, and closes the connection
+ */
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);
 
+async function addUser(newUser) {
+    try {
+        await client.connect();
+        const database = client.db("sample_mflix");
+        const users = database.collection("users");
+        const result = await users.insertOne(newUser);
+        console.log(`New user created with the following id: ${result.insertedId}`);
+    } finally {
+        await client.close();
+    }
+}
+
+async function getUser(username) {
+    try {
+        await client.connect();
+        const database = client.db("sample_mflix");
+        const users = database.collection("users");
+        const user = await users.findOne({ username: username });
+        await client.close();
+        return user;
+    } catch (e) {
+        console.error(e);
+    }
+}
 
 /** Signup Route */
 
@@ -62,9 +118,11 @@ app.post('/signup', (req, res) => {
     console.log(`Hashed Password: ${hashedPass}`);
     console.log(`Salt: ${salt}`);
 
-    users.push({ ...receivedData, password: hashedPass, salt });
-
-    res.json({ message: 'Signed Up successfully', data: receivedData });
+    addUser({ ...receivedData, password: hashedPass, salt }).then(() => {
+      res.json({ message: 'Signed Up successfully', data: receivedData });
+    }).catch((e) => {
+      res.status(500).json({ message: 'Failed to sign up', error: e });
+    });
 });
 
 
@@ -82,24 +140,27 @@ app.post('/login', (req, res) => {
 
     const { password } = receivedData;
 
-    const user = users.find(user => user.username === receivedData.username);
+    getUser(receivedData.username).then((user) => {
 
-    if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-    }
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
 
-    const hashedPass = hashPassword(password,user.salt);
+      const hashedPass = hashPassword(password,user.salt);
 
-    console.log(user);
-    console.log(`Original Password: ${password}`);
-    console.log(`Hashed Password: ${hashedPass}`);
-    console.log(`Salt: ${user.salt}`);
+      console.log(user);
+      console.log(`Original Password: ${password}`);
+      console.log(`Hashed Password: ${hashedPass}`);
+      console.log(`Salt: ${user.salt}`);
 
-    if (user.password !== hashedPass) {
-        return res.status(401).json({ message: 'Invalid credentials' });
-    }
+      if (user.password !== hashedPass) {
+          return res.status(401).json({ message: 'Invalid credentials' });
+      }
 
-    res.json({ message: 'Logged In successfully', data: receivedData });
+      res.json({ message: 'Logged In successfully', data: receivedData });
+    }).catch((e) => {
+      res.status(500).json({ message: 'Failed to login', error: e });
+    });
 })
 
 /** Starting the Server */
