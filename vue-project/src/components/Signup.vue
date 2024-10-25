@@ -33,6 +33,7 @@
   <script>
   import User from '../user.js'; // Import the User class
   import CryptoJS from 'crypto-js'; // Ensure CryptoJS is available
+  import { signUpUser } from "@/views/auth";
   
   export default {
 	name: 'Signup',
@@ -165,7 +166,7 @@
 		  return true;
 		}
 	  },
-	  submitForm() {
+	async submitForm() {
 		if (this.fullName !== "" && this.username !== "" && this.email !== "" && this.phone !== "" && this.password !== "") {
 		  const isInputValid = this.validateInputFormat();
 		  if (!isInputValid) return;
@@ -201,6 +202,25 @@
 		} else {
 		  this.errorMessage = "Please fill in all fields to continue.";
 		}
+        // Basic form validation here...
+        const hashedPassword = CryptoJS.SHA512(this.password).toString();
+        
+        const userData = {
+            fullName: this.fullName,
+            username: this.username,
+            email: this.email,
+            phone: this.phone,
+            password: hashedPassword,
+        };
+        try {
+            const response = await signUpUser(userData);
+            this.successMessage = response.message;
+            this.errorMessage = "";
+        } catch (error) {
+            this.errorMessage = error.message;
+            this.successMessage = "";
+        }
+        
 	  }
 	}
   };
