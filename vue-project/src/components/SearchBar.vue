@@ -83,7 +83,7 @@
   .search-bar {
     display: flex;
     align-items: center;
-    border: 2px solid green;
+    border: 4px solid green;
     border-radius: 16px;
     padding: 10px;
     background-color: white;
@@ -110,8 +110,8 @@
   }
   
   .search-icon {
-    width: 20px;
-    height: 20px;
+    width: 23px;
+    height: 23px;
     margin-right: 10px;
   }
   

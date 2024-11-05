@@ -3,10 +3,10 @@
     <h1 class="title">Mercado Colegial</h1>
     <div class="buttons">
       <router-link to="/login">
-        <button class="btn Login">Iniciar sesión</button>
+        <button class="btn Login">Log In</button>
       </router-link>
       <router-link to="/registration">
-        <button class="btn vendedor">Registrarse </button>
+        <button class="btn vendedor">Sign Up </button>
       </router-link>
     </div>
   </div>

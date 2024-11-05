@@ -5,15 +5,15 @@
             <div class="form">
                 <div class="formElement">
                     <label for="email">Email:</label>
-                    <input v-model="email" type="email" id="email" placeholder="Ingresa tu email" required />
+                    <input v-model="email" type="email" id="email" placeholder="Enter email" required />
                 </div>
                 <div class="formElement">
                     <label for="password">Password:</label>
-                    <input v-model="password" type="password" id="password" placeholder="Ingresa tu password" required />
+                    <input v-model="password" type="password" id="password" placeholder="Enter password" required />
                 </div>
                 <router-link to="/home"> <!-- Change 'to' to "/seller-das" to make it go to the seller dashboard -->
                     <div class="formElement">
-                        <button class="btn" type="submit">Acceder</button>
+                        <button class="btn" type="submit">Log In</button>
                     </div>
                 </router-link>
             </div>
@@ -97,8 +97,8 @@ body {
 }
 
 label {
-    margin-bottom: 5px;
-    font-size: 1em;
+    margin-bottom: 8px;
+    font-size: 1.28em;
     color: green;
 }
 

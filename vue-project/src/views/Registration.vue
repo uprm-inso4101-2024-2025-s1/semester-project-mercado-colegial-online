@@ -4,31 +4,31 @@
         <form @submit.prevent="signUp">
             <div class="form">
                 <div class="formElement">
-                    <label for="firstName">Nombre:</label>
-                    <input v-model="Name" type="text" id="Name" placeholder="Ingresa tu nombre y apellidos" required />
+                    <label for="firstName">Full Name:</label>
+                    <input v-model="Name" type="text" id="Name" placeholder="First and last name" required />
                 </div>
                 <div class="formElement">
-                    <label for="institutionalEmail">Email Institucional:</label>
-                    <input v-model="institutionalEmail" type="email" id="institutionalEmail" placeholder="Ingresa tu email institucional" required />
+                    <label for="institutionalEmail">Institutional Email:</label>
+                    <input v-model="institutionalEmail" type="email" id="institutionalEmail" placeholder="Enter your institutional email" required />
                 </div>
                 <div class="formElement">
-                    <label for="studentNumber">Número de Estudiante:</label>
+                    <label for="studentNumber">Student Number:</label>
                     <input 
                         v-model="formattedStudentNumber" 
                         @input="formatStudentNumber" 
                         type="text" 
                         id="studentNumber" 
-                        placeholder="Ingresa tu número de estudiante" 
+                        placeholder="Enter your student number" 
                         required 
                     />
                 </div>
                 <div class="formElement">
-                    <label for="signUpPassword">Contraseña:</label>
-                    <input v-model="signUpPassword" type="password" id="signUpPassword" placeholder="Crea tu contraseña" required />
+                    <label for="signUpPassword">Password:</label>
+                    <input v-model="signUpPassword" type="password" id="signUpPassword" placeholder="Create your password" required />
                 </div>
                 <div class="formElement">
-                    <label for="signUpPassword">Confirmar contraseña:</label>
-                    <input v-model="signUpPassword1" type="password" id="signUpPassword1" placeholder="Confirma tu contraseña" required />
+                    <label for="signUpPassword">Password Confirmation:</label>
+                    <input v-model="signUpPassword1" type="password" id="signUpPassword1" placeholder="Confirm your password" required />
                 </div>
 
                 <!-- CAPTCHA Section -->
@@ -40,17 +40,17 @@
                 </div>
 
                 <div class="formElement seller-question">
-                    <label for="isSeller">¿Eres vendedor?</label>
+                    <label for="isSeller">Are you a seller?</label>
                     <input type="checkbox" id="isSeller" v-model="isSeller" /> 
                 </div>
                 <div v-if="isSeller">
                     <div class="formElement">
-                        <label for="storeName">Nombre de la tienda:</label>
-                        <input v-model="storeName" type="text" id="storeName" placeholder="Ingresa el nombre de tu tienda" required />
+                        <label for="storeName">Shop name:</label>
+                        <input v-model="storeName" type="text" id="storeName" placeholder="Enter your shop name" required />
                     </div>
                 </div>
                 <div class="formElement">
-                    <button class="btn" type="submit">Registrarse</button>
+                    <button class="btn" type="submit">Sign Up</button>
                 </div>
             </div>
         </form> 
@@ -128,7 +128,7 @@ export default {
             const ctx = canvas.getContext("2d");
             ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous CAPTCHA
             ctx.font = "20px Arial";
-            ctx.fillStyle = "green";
+            ctx.fillStyle = "darkgreen";
             ctx.fillText(this.captcha, 10, 30); // Draw the CAPTCHA string
         },
     
@@ -155,7 +155,7 @@ export default {
 
     .title {
         font-size: 3em;
-        color: green;
+        color: green; 
         margin: 0px;
         padding: 10px;
     }
@@ -197,8 +197,8 @@ export default {
     }
 
     label {
-        margin-bottom: 5px;
-        font-size: 1em;
+        margin-bottom: 8px;
+        font-size: 1.28em;
         color: green;
     }
 

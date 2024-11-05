@@ -5,11 +5,6 @@
         <span class="mercado">Mercado </span>
         <span class="colegial">Colegial</span>
       </a>
-      <button class="hamburger" @click="toggleMenu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
     </div>
     <div :class="['navbar-menu', { 'is-active': menuActive }]">
       <router-link to="/Home" class="nav-item">Home</router-link>
@@ -54,7 +49,7 @@
   
   .colegial {
     color: #1E8A0D;
-    font-weight: normal;
+    font-weight: bold;
   }
   
   .navbar-menu {
