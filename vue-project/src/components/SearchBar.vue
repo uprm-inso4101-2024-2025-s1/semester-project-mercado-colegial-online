@@ -83,7 +83,7 @@
   .search-bar {
     display: flex;
     align-items: center;
-    border: 4px solid green;
+    border: 4px solid #80A16A;
     border-radius: 16px;
     padding: 10px;
     background-color: white;

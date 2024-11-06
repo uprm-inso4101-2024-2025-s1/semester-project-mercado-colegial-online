@@ -7,10 +7,18 @@
       </a>
     </div>
     <div :class="['navbar-menu', { 'is-active': menuActive }]">
-      <router-link to="/Home" class="nav-item">Home</router-link>
-      <router-link to="/productSearch" class="nav-item">Products</router-link>
-      <router-link to="/" class="nav-item">Profile</router-link>
-      <router-link to="/Cart" class="nav-item">Cart</router-link>
+      <router-link to="/Home" class="nav-item">
+        <img src="../assets/home1.png" alt=" " width="35" height="35" />
+      </router-link>
+      <router-link to="/productSearch" class="nav-item">
+        <img src="../assets/products.png" alt=" " width="35" height="35" />
+      </router-link>
+      <router-link to="/" class="nav-item">
+          <img src="../assets/accountAvatar.png" alt=" " width="35" height="35" />
+      </router-link>
+      <router-link to="/Cart" class="nav-item">
+          <img src="../assets/shopping1.png" alt=" " width="35" height="35" />
+      </router-link>
     </div>
   </nav>
 </template>
@@ -43,12 +51,12 @@
   }
   
   .mercado {
-    color: #1E8A0D;
+    color: darkgreen;
     font-weight: bold;
   }
   
   .colegial {
-    color: #1E8A0D;
+    color: darkgreen;
     font-weight: bold;
   }
   
@@ -69,7 +77,7 @@
   }
   
   .nav-item:hover {
-    color: black;
+    color: darkgreen;
   }
   
   /* Ensures no horizontal overflow */

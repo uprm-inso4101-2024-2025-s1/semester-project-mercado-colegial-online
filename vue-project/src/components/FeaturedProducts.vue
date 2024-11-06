@@ -3,8 +3,8 @@
     <h2 class="title">Featured Products</h2>
     <div class="products-grid">
       <div v-for="product in products" :key="product.id" class="product-card">
-          <!-- router link envia al usuario a la pagina del producto seleccionado -->
-          <router-link :to="`/product/${product.id}`">
+        <!-- router link envia al usuario a la pagina del producto seleccionado -->
+        <router-link :to="`/product/${product.id}`" class="product-link">
           <img :src="product.image" alt="Product Image" class="product-image" />
           <h3 class="product-title">{{ product.name }}</h3>
           <p class="product-price">{{ product.price }}</p>
@@ -33,7 +33,7 @@ export default {
 }
 
 .title {
-  color: green;
+  color: darkgreen;
   font-size: 24px;
   margin-bottom: 40px;
 }
@@ -52,6 +52,11 @@ export default {
   padding: 10px;
 }
 
+.product-link {
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Inherit color from individual element styles */
+}
+
 .product-image {
   width: 100%;
   height: 200px;
@@ -60,9 +65,14 @@ export default {
 }
 
 .product-title {
+  color: green;
   font-size: 18px;
   margin-top: 10px;
   font-weight: bold;
+}
+
+.product-title:hover {
+  color: darkgreen;
 }
 
 .product-price {
