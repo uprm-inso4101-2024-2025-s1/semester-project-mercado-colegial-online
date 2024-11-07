@@ -7,6 +7,7 @@ import { connect } from './db.js';
 
 /** Routes */
 import itemsRouter from './routes/items.js'
+import usersRouter from './routes/users.js'
 
 /** Express App setup */
 const app = express();
@@ -35,6 +36,7 @@ connect()
 
 /** Routes */
 app.use('/items', itemsRouter); 
+app.use('/users', usersRouter); 
 
 
 

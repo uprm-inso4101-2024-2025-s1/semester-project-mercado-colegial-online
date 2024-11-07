@@ -6,7 +6,7 @@ import {
   getUserById,
   updateUserById,
   deleteUserById
-} from '../controllers/userController.js';  // Adjust path if necessary
+} from '../backend/controllers/userController.js';  // Adjust path if necessary
 
 const router = express.Router();
 router.use(express.json());
