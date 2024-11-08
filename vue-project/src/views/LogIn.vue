@@ -52,6 +52,7 @@ export default {
 
 <style scoped>
 body {
+    background-color: rgb(73, 95, 60);
     height: 100%;
     margin: 0;
     width: 100vw;
@@ -62,7 +63,7 @@ body {
 
 .title {
     font-size: 3em;
-    color: green;
+    color: rgb(105, 238, 85);
     margin: 0px;
     padding: 10px;
 }
@@ -85,8 +86,8 @@ body {
 .btn {
     padding: 5px 10px;
     font-size: 1em;
-    color: white;
-    background-color: green;
+    color: hsl(0, 0%, 85%);
+    background-color: rgb(105, 238, 85);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -99,16 +100,25 @@ body {
 label {
     margin-bottom: 8px;
     font-size: 1.28em;
-    color: green;
+    color: rgb(105, 238, 85);
 }
 
 input {
+    background-color: hsl(98, 23%, 40%);
     font-size: 1em;
-    border: 2px solid darkgreen;
+    border: 3px solid green;
     border-radius: 10px;
     padding: 5px;
     width: 100%;
     max-width: 300px;
+    color: hsl(0, 0%, 85%);
+    outline: none;
+
 }
+
+input::placeholder {
+    color: hsl(0, 0%, 85%);
+}
+
 
 </style>

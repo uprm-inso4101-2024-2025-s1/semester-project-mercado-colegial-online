@@ -81,15 +81,19 @@
           </div>
         </div>
       </div>
-      <footer>
-        <p>© 2024 Mercado Colegial Online</p>
-      </footer>
+      <Footer />
     </div>
 </template>
 
 <script>
-export default {
-data() {
+  import Footer from "../components/Footer.vue";
+
+  export default {
+    name: "ProductSearch",
+    components: {
+      Footer,
+    },
+    data() {
     return {
     searchQuery: '',
     categories: ['Jewelry', 'Clothing', 'Pottery', 'Baked Goods', 'Makeup', 'Crochet Items', 'Thrifted Clothes'],
