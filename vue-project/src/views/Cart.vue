@@ -98,12 +98,10 @@ import Navbar from "../components/Navbar.vue";
   <style scoped>
 /* General layout */
 .cart-page {
-  padding: 20px;
-  margin-top: 35px; /* Adjusted margin for the navbar */
-  font-family: 'Arial', sans-serif;
+  min-height: 100vh; /* Ensure content fills at least the viewport height */
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  justify-content: space-between;
 }
 
 .cart-title {
@@ -290,10 +288,10 @@ footer {
   background-color: #f9f9f9; /* Your desired footer background color */
   padding: 20px;
   text-align: center;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
+  width: 100vw;
   left: 0;
+  bottom: 0;
 }
+
 
 </style>
