@@ -87,14 +87,14 @@ body {
     padding: 5px 10px;
     font-size: 1em;
     color: hsl(0, 0%, 85%);
-    background-color: rgb(105, 238, 85);
+    background-color: green;
     border: none;
     border-radius: 10px;
     cursor: pointer;
 }
 
 .btn:hover {
-    background-color: darkgreen;
+    background-color: #495F3C;
 }
 
 label {
