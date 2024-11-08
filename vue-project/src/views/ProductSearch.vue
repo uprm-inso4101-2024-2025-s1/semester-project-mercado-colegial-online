@@ -7,7 +7,7 @@
             <img src="../assets/home.png" style="margin: 0px 20px ;" alt=" " width="35" height="35" />
           </router-link>
           <router-link to="/seller-dash">
-            <img src="../assets/products.png" style="margin: 0px 20px ;" alt=" " width="35" height="35" />
+            <img src="../assets/dashboard.png" style="margin: 0px 20px ;" alt=" " width="35" height="35" />
           </router-link>
         </div>
       </header>
