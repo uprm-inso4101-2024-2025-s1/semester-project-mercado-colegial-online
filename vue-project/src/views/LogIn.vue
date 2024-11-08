@@ -88,13 +88,14 @@ body {
     font-size: 1em;
     color: hsl(0, 0%, 85%);
     background-color: green;
-    border: none;
+    border: 3px solid #495F3C;
     border-radius: 10px;
     cursor: pointer;
 }
 
 .btn:hover {
     background-color: #495F3C;
+    border: 3px solid green;
 }
 
 label {

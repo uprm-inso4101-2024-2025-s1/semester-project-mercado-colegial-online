@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <body>
         <h1 class="title">Mercado Colegial</h1>
         <form @submit.prevent="signUp">
             <div class="form">
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </form> 
-    </div>
+    </body>
 </template>
 
 <script>
@@ -144,75 +144,86 @@ export default {
 </script>
 
 <style scoped>
-    body {
-        height: 100%;
-        margin: 0;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
+body {
+    background-color: rgb(73, 95, 60);
+    height: 100%;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-    .title {
-        font-size: 3em;
-        color: green; 
-        margin: 0px;
-        padding: 10px;
-    }
+.title {
+    font-size: 3em;
+    color: rgb(105, 238, 85);
+    margin: 0px;
+    padding: 10px;
+}
 
-    .form {
-        height: 80vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+.form {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    .formElement {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-        align-items: center;
-    }
+.formElement {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    align-items: center;
+}
 
-    .seller-question {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
+.btn {
+    padding: 5px 10px;
+    font-size: 1em;
+    color: hsl(0, 0%, 85%);
+    background-color: green;
+    border: 3px solid #495F3C;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
-    .btn {
-        margin-top: 20px;
-        padding: 5px 10px;
-        font-size: 1em;
-        color: white;
-        background-color: green;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-    }
+.btn:hover {
+    background-color: #495F3C;
+    border: 3px solid green;
+}
 
-    .btn:hover {
-        background-color: darkgreen;
-    }
+label {
+    margin-bottom: 8px;
+    font-size: 1.28em;
+    color: rgb(105, 238, 85);
+}
 
-    label {
-        margin-bottom: 8px;
-        font-size: 1.28em;
-        color: green;
-    }
+input {
+    background-color: hsl(98, 23%, 40%);
+    font-size: 1em;
+    border: 3px solid green;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100%;
+    max-width: 300px;
+    color: hsl(0, 0%, 85%);
+    outline: none;
 
-    input {
-        font-size: 1em;
-        border: 2px solid darkgreen;
-        border-radius: 10px;
-        padding: 5px;
-        width: 100%;
-        max-width: 300px;
-    }
+}
 
-    canvas {
-        border: 1px solid darkgreen;
-        margin-bottom: 10px;
-    }
+input::placeholder {
+    color: hsl(0, 0%, 85%);
+}
+
+.seller-question {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+canvas {
+    background-color: lightgreen;
+    border: 1px solid darkgreen;
+    margin-bottom: 10px;
+}
+
 </style>
