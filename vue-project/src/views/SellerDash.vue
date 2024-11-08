@@ -258,7 +258,7 @@ footer {
   text-align: center;
   padding: 10px;
   background-color: #006400; /* Dark green */
-  color: #fff;
+  color: #252525;
   border-top: 2px solid #228B22; /* Forest green border */
   position: fixed;
   width: 100%;
