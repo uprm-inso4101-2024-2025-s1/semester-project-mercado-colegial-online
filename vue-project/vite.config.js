@@ -13,7 +13,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'), // Main entry point for your app
-        signup: resolve(__dirname, 'signup.html') // New signup page entry
       }
     }
   },
