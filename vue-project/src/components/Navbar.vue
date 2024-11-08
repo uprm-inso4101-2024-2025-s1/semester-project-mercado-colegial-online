@@ -8,7 +8,7 @@
     </div>
     <div :class="['navbar-menu', { 'is-active': menuActive }]">
       <router-link to="/Home" class="nav-item">
-        <img src="../assets/home1.png" alt=" " width="35" height="35" />
+        <img src="../assets/home.png" alt=" " width="35" height="35" />
       </router-link>
       <router-link to="/productSearch" class="nav-item">
         <img src="../assets/products.png" alt=" " width="35" height="35" />
@@ -17,7 +17,7 @@
           <img src="../assets/accountAvatar.png" alt=" " width="35" height="35" />
       </router-link>
       <router-link to="/Cart" class="nav-item">
-          <img src="../assets/shopping1.png" alt=" " width="35" height="35" />
+          <img src="../assets/shopping.png" alt=" " width="35" height="35" />
       </router-link>
     </div>
   </nav>

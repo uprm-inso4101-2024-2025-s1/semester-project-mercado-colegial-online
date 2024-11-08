@@ -4,10 +4,10 @@
       <h1>Seller Dashboard</h1>
       <div>
         <router-link to="/home">
-          <button class="home-btn">Home</button>
+          <img src="../assets/home.png" style="margin: 0px 20px ;" alt=" " width="35" height="35" />
         </router-link>
         <router-link to="/ProductSearch">
-          <button class="ProductSearch-btn">Product Listing</button>
+          <img src="../assets/products.png" style="margin: 0px 20px ;" alt=" " width="35" height="35" />
         </router-link>
       </div>
     </div>
