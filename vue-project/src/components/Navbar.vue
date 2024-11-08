@@ -31,18 +31,20 @@
   
   <style scoped>
   .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    padding: 20px 20px;
-    width: 100%;
-    box-sizing: border-box; /* Ensures padding is included in width calculations */
-    position: fixed; /* Keep navbar fixed to the top */
-    top: 0;
-    left: 0;
-    right: 0;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 20px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* High z-index to stay on top of other elements */
+}
+
   
   .navbar-brand .brand-name {
     font-size: 34px;
