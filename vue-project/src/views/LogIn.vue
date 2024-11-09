@@ -40,7 +40,7 @@ export default {
                 const hashedPassword = CryptoJS.SHA512(this.password).toString();
 
                 // Create a new User instance
-                const user1 = new User("", "", this.email, "", hashedPassword);
+                const user1 = new User("", "", this.email, hashedPassword, "");
                 user1.displayInfo();
                 this.userArray.push(user1);
                 console.log('Users Array', { userArray: this.userArray });

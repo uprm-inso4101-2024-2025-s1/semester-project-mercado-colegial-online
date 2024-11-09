@@ -38,6 +38,8 @@ app.use('/items', itemsRouter);
 
 async function addUser(newUser) {
     try {
+        // convert newUser.student_num from the string 123-45-6789 to an integer 123456789
+        newUser.student_num = parseInt(newUser.student_num.replace(/-/g, ''));
         const user = new userModel(newUser);
         const result = await user.save();
         console.log(`New user created with the following id: ${result._id}`);
@@ -47,9 +49,9 @@ async function addUser(newUser) {
     }
 }
 
-async function getUser(username) {
+async function getUser(email) {
     try {
-        const user = await userModel.findOne({ username: username });
+        const user = await userModel.findOne({ email: email });
         return user;
     } catch (e) {
         console.error(e);
@@ -103,7 +105,7 @@ app.post('/login', (req, res) => {
 
     const { password } = receivedData;
 
-    getUser(receivedData.username).then((user) => {
+    getUser(receivedData.email).then((user) => {
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });

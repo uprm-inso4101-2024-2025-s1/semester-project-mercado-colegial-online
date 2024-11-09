@@ -110,8 +110,8 @@ export default {
                 return;
             }
 
-            const hashedPassword = CryptoJS.SHA512(this.password).toString();
-            const user1 = new User(this.Name, "", this.institutionalEmail, "", hashedPassword);
+            const hashedPassword = CryptoJS.SHA512(this.signUpPassword).toString();
+            const user1 = new User(this.Name, this.formattedStudentNumber, this.institutionalEmail, hashedPassword, isSeller ? 'admin' : 'student');
 
             this.userArray.push(user1);
 
