@@ -173,10 +173,11 @@ methods: {
 <style scoped>
 .main-header {
 display: flex;
+height: 41px;
 justify-content: space-between;
 align-items: center;
 padding: 20px;
-background-color: #006400;
+background-color: #485E3C;
 color: white;
 }
 
@@ -274,7 +275,7 @@ footer {
 text-align: center;
 color: #252525;
 padding: 20px;
-background-color: darkgreen;
+background-color: #485E3C;
 margin-top: 20px;
 }
 

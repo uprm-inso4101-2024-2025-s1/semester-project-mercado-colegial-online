@@ -96,6 +96,7 @@
   </script>
   
   <style scoped>
+
 /* General layout */
 .cart-page {
   min-height: 100vh; /* Ensure content fills at least the viewport height */

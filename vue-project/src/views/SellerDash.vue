@@ -198,9 +198,9 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  background-color: #006400; /* Dark green */
+  background-color: #485E3C; /* Dark green */
   color: #fff;
-  border-bottom: 2px solid #228B22; /* Forest green border */
+  border-bottom: 2px solid #485E3C; /* Forest green border */
 }
 .header h1 {
   margin: 0;
@@ -257,9 +257,9 @@ body {
 footer {
   text-align: center;
   padding: 10px;
-  background-color: #006400; /* Dark green */
+  background-color: #485E3C; /* Dark green */
   color: #252525;
-  border-top: 2px solid #228B22; /* Forest green border */
+  border-top: 2px solid #485E3C; /* Forest green border */
   position: fixed;
   width: 100%;
   bottom: 0;
