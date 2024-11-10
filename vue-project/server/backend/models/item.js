@@ -1,9 +1,10 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const itemSchema = new mongoose.Schema({
 
   item_id: {
-    type: mongoose.Schema.Types.ObjectId, 
+    type: mongoose.Schema.Types.ObjectId,
+    default: () => new mongoose.Types.ObjectId(), 
     index: true,
     unique: true,
   },
@@ -45,4 +46,4 @@ const itemSchema = new mongoose.Schema({
 // Create and export the model based on the schema
 const Item = mongoose.model('Item', itemSchema);
 
-module.exports = Item;
+export default Item; 

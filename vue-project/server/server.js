@@ -1,25 +1,24 @@
-/** Project now uses ES module syntax, stated in our package.json */
-
-/** ES modules */
 import express from "express";
 import bodyParser from "body-parser";
 import cors from 'cors'; 
 import crypto from 'crypto'; 
-import dotenv from 'dotenv'; 
+import { connect } from './db.js'; 
+
+
+/** Routes */
+import itemsRouter from './routes/items.js'
+import usersRouter from './routes/users.js'
 
 /** Express App setup */
 const app = express();
 const port = 3000;
 
-/** Middleware  */
 
 /** Parses incoming JSON request bodies to make it easier to handle data */
-app.use(bodyParser.json());
-/** Enables Cross-Origin Resoruce Sharing, 
- * which allows the backend to handle 
- * requests from other domains
- */
-app.use(cors());
+app.use(bodyParser.json());     
+
+/** Enables Cross-Origin Resoruce Sharing, which allows the backend to handle requests from other domains */
+app.use(cors());    
 
 /** Password Hashing Utilities */
 function hashPassword(password, salt){
@@ -75,44 +74,15 @@ app.get('/generate-captcha', (req, res) => {
 // Serve static files (assuming your images are in a folder named 'captchas')
 app.use('/captchas', express.static(path.join(__dirname, 'captchas')));
 
+
 /** Mongodb Connection */
+connect()
 
-/**
- * MongoClient connects to our MongoDB Atlas cluster
- */
-import { MongoClient, ServerApiVersion } from "mongodb";
 
-// dotenv.config(); 
-// const uri = process.env.MONGODB_URI; 
+/** Routes */
+app.use('/items', itemsRouter); 
+app.use('/users', usersRouter); 
 
-// const uri = "mongodb://mercadocolegial:M.Colegio9@cluster0-shard-00-00.vcnew.mongodb.net:27017,cluster0-shard-00-01.vcnew.mongodb.net:27017,cluster0-shard-00-02.vcnew.mongodb.net:27017/?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"
-const uri = "mongodb+srv://mercadocolegial:M.Colegio9@cluster0.vcnew.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
-
-/**
- * Handles the connection to MongoDB, this sends a "ping" to confirm a successful 
- * connection, and closes the connection
- */
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
 
 async function addUser(newUser) {
     try {
