@@ -4,10 +4,10 @@
       <h1>Seller Dashboard</h1>
       <div>
         <router-link to="/home">
-          <button class="home-btn">Home</button>
+          <img src="../assets/home.png" style="margin: 0px 20px ;" alt=" " width="35" height="35" />
         </router-link>
-        <router-link to="/product-listing">
-          <button class="product-list-btn">Product Listing</button>
+        <router-link to="/ProductSearch">
+          <img src="../assets/products.png" style="margin: 0px 20px ;" alt=" " width="35" height="35" />
         </router-link>
       </div>
     </div>
@@ -198,9 +198,9 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  background-color: #006400; /* Dark green */
+  background-color: #485E3C; /* Dark green */
   color: #fff;
-  border-bottom: 2px solid #228B22; /* Forest green border */
+  border-bottom: 2px solid #485E3C; /* Forest green border */
 }
 .header h1 {
   margin: 0;
@@ -257,9 +257,9 @@ body {
 footer {
   text-align: center;
   padding: 10px;
-  background-color: #006400; /* Dark green */
-  color: #fff;
-  border-top: 2px solid #228B22; /* Forest green border */
+  background-color: #485E3C; /* Dark green */
+  color: #252525;
+  border-top: 2px solid #485E3C; /* Forest green border */
   position: fixed;
   width: 100%;
   bottom: 0;

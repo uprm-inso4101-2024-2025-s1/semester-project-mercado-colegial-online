@@ -28,53 +28,6 @@ function generateSalt(){
     return crypto.randomBytes(16).toString('hex');
 }
 
-function generateRandomCaptchaText(length = 5) {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return result;
-}
-
-app.get('/generate-captcha', (req, res) => {
-    // Generate a random CAPTCHA text
-    const captchaText = generateRandomCaptchaText();
-    
-    // Use this text to create the filename
-    const imageFileName = `${captchaText}.png`; // Assuming images are named after the text
-
-    // Send the image file name in the response
-    res.json({ captchaImageUrl: `http://localhost:3000/captchas/${imageFileName}` }); // Adjust the URL accordingly
-});
-
-// Serve static files (assuming your images are in a folder named 'captchas')
-app.use('/captchas', express.static(path.join(__dirname, 'captchas')));
-
-function generateRandomCaptchaText(length = 5) {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return result;
-}
-
-app.get('/generate-captcha', (req, res) => {
-    // Generate a random CAPTCHA text
-    const captchaText = generateRandomCaptchaText();
-    
-    // Use this text to create the filename
-    const imageFileName = `${captchaText}.png`; // Assuming images are named after the text
-
-    // Send the image file name in the response
-    res.json({ captchaImageUrl: `http://localhost:3000/captchas/${imageFileName}` }); // Adjust the URL accordingly
-});
-
-// Serve static files (assuming your images are in a folder named 'captchas')
-app.use('/captchas', express.static(path.join(__dirname, 'captchas')));
-
-
 /** Mongodb Connection */
 connect()
 

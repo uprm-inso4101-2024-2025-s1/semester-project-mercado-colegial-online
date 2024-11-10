@@ -5,15 +5,15 @@
             <div class="form">
                 <div class="formElement">
                     <label for="email">Email:</label>
-                    <input v-model="email" type="email" id="email" placeholder="Ingresa tu email" required />
+                    <input v-model="email" type="email" id="email" placeholder="Enter email" required />
                 </div>
                 <div class="formElement">
                     <label for="password">Password:</label>
-                    <input v-model="password" type="password" id="password" placeholder="Ingresa tu password" required />
+                    <input v-model="password" type="password" id="password" placeholder="Enter password" required />
                 </div>
                 <router-link to="/home"> <!-- Change 'to' to "/seller-das" to make it go to the seller dashboard -->
                     <div class="formElement">
-                        <button class="btn" type="submit">Acceder</button>
+                        <button class="btn" type="submit">Log In</button>
                     </div>
                 </router-link>
             </div>
@@ -52,6 +52,7 @@ export default {
 
 <style scoped>
 body {
+    background-color: rgb(73, 95, 60);
     height: 100%;
     margin: 0;
     width: 100vw;
@@ -62,7 +63,7 @@ body {
 
 .title {
     font-size: 3em;
-    color: green;
+    color: rgb(105, 238, 85);
     margin: 0px;
     padding: 10px;
 }
@@ -85,30 +86,40 @@ body {
 .btn {
     padding: 5px 10px;
     font-size: 1em;
-    color: white;
+    color: hsl(0, 0%, 85%);
     background-color: green;
-    border: none;
+    border: 3px solid #495F3C;
     border-radius: 10px;
     cursor: pointer;
 }
 
 .btn:hover {
-    background-color: darkgreen;
+    background-color: #495F3C;
+    border: 3px solid green;
 }
 
 label {
-    margin-bottom: 5px;
-    font-size: 1em;
-    color: green;
+    margin-bottom: 8px;
+    font-size: 1.28em;
+    color: rgb(105, 238, 85);
 }
 
 input {
+    background-color: hsl(98, 23%, 40%);
     font-size: 1em;
-    border: 2px solid darkgreen;
+    border: 3px solid green;
     border-radius: 10px;
     padding: 5px;
     width: 100%;
     max-width: 300px;
+    color: hsl(0, 0%, 85%);
+    outline: none;
+
 }
+
+input::placeholder {
+    color: hsl(0, 0%, 85%);
+}
+
 
 </style>

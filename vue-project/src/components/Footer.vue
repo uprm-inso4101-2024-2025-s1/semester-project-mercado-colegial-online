@@ -19,7 +19,7 @@
   
   <style scoped>
   .footer {
-    background-color: #f8f8f8;
+    background-color: #485E3C;
     padding: 20px;
     text-align: center;
     border-top: 1px solid #ccc;
@@ -32,7 +32,7 @@
   
   .footer p {
     margin: 0;
-    color: #333;
+    color: #252525;
   }
   
   .footer-links {
@@ -41,7 +41,7 @@
   
   .footer-links a {
     margin: 0 10px;
-    color: #0066cc;
+    color: #001fcc;
     text-decoration: none;
   }
   

@@ -6,6 +6,8 @@ import Registration from '../views/Registration.vue';
 import SellerDashboard from '../views/SellerDash.vue';  // Import the SellerDashboard component
 import Settings from '../views/Settings.vue';
 import ProductPage from '../views/ProductPage.vue';  // Import the ProductPage component
+import ProductSearchPage from '../views/ProductSearch.vue';
+import Cart from '../views/Cart.vue';
 
 const routes = [
   {
@@ -34,6 +36,11 @@ const routes = [
     component: SellerDashboard,
   },
   {
+    path: '/ProductSearch',
+    name: 'ProductSearch',
+    component: ProductSearchPage,
+  },
+  {
     path: '/settings',  // New route for the Seller Login
     name: 'Settings',
     component: Settings,
@@ -43,6 +50,11 @@ const routes = [
     name: 'ProductPage',
     component: ProductPage,
     props: true,
+  },
+  {
+    path: '/Cart',
+    name: 'CartPage',
+    component: Cart,
   }
 ];
 

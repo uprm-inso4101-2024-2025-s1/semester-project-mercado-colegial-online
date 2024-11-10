@@ -1,19 +1,27 @@
 <template>
-    <nav class="navbar">
-      <div class="navbar-brand">
-        <a href="/" class="brand-name">
-          <span class="mercado">Mercado </span>
-          <span class="colegial">Colegial</span>
-        </a>
-      </div>
-      <div class="navbar-menu">
-        <router-link to="/" class="nav-item">Home</router-link>
-        <router-link to="/" class="nav-item">Products</router-link>
-        <router-link to="/" class="nav-item">Profile</router-link>
-        <router-link to="/" class="nav-item">Cart</router-link>
-      </div>
-    </nav>
-  </template>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="/" class="brand-name">
+        <span class="mercado">Mercado </span>
+        <span class="colegial">Colegial</span>
+      </a>
+    </div>
+    <div :class="['navbar-menu', { 'is-active': menuActive }]">
+      <router-link to="/Home" class="nav-item">
+        <img src="../assets/home.png" alt=" " width="35" height="35" />
+      </router-link>
+      <router-link to="/productSearch" class="nav-item">
+        <img src="../assets/products.png" alt=" " width="35" height="35" />
+      </router-link>
+      <router-link to="/" class="nav-item">
+          <img src="../assets/accountAvatar.png" alt=" " width="35" height="35" />
+      </router-link>
+      <router-link to="/Cart" class="nav-item">
+          <img src="../assets/shopping.png" alt=" " width="35" height="35" />
+      </router-link>
+    </div>
+  </nav>
+</template>
   
   <script>
   export default {
@@ -23,18 +31,20 @@
   
   <style scoped>
   .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    padding: 20px 20px;
-    width: 100%;
-    box-sizing: border-box; /* Ensures padding is included in width calculations */
-    position: fixed; /* Keep navbar fixed to the top */
-    top: 0;
-    left: 0;
-    right: 0;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 20px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* High z-index to stay on top of other elements */
+}
+
   
   .navbar-brand .brand-name {
     font-size: 34px;
@@ -43,13 +53,13 @@
   }
   
   .mercado {
-    color: #1E8A0D;
+    color: darkgreen;
     font-weight: bold;
   }
   
   .colegial {
-    color: #1E8A0D;
-    font-weight: normal;
+    color: darkgreen;
+    font-weight: bold;
   }
   
   .navbar-menu {
@@ -69,7 +79,7 @@
   }
   
   .nav-item:hover {
-    color: black;
+    color: darkgreen;
   }
   
   /* Ensures no horizontal overflow */

@@ -149,6 +149,26 @@ export default {
           seller: "SHOP123",
           image: placeholderImage,
         },
+        { id: 9, name: 'Handmade Necklace', price: "$25.00", rating: 4.5, category: 'Jewelry', image: 'necklace.jpg', tags: ['Handmade'] },
+          { id: 10, name: 'Vintage Dress', price: "$40.00", rating: 4.8, category: 'Clothing', image: 'dress.jpg', tags: ['Vintage'] },
+          { id: 11, name: 'Ceramic Mug', price: "$15.00", rating: 4.2, category: 'Pottery', image: 'mug.jpg', tags: ['Handmade'] },
+          { id: 12, name: 'Chocolate Chip Cookies', price: "$10.00", rating: 5, category: 'Baked Goods', image: 'cookies.jpg', tags: ['Sustainable'] },
+          { id: 13, name: 'Crochet Scarf', price: "$30.00", rating: 4.6, category: 'Crochet Items', image: 'scarf.jpg', tags: ['Handmade'] },
+          { id: 14, name: 'Organic Lip Balm', price: "$8.00", rating: 4.9, category: 'Makeup', image: 'lipbalm.jpg', tags: ['Sustainable'] },
+          { id: 15, name: 'Thrifted Vintage Jacket', price: "$45.00", rating: 4.7, category: 'Thrifted Clothes', image: 'jacket.jpg', tags: ['Vintage'] },
+          { id: 16, name: 'Handmade Pottery Bowl', price: "$20.00", rating: 4.3, category: 'Pottery', image: 'bowl.jpg', tags: ['Handmade'] },
+          { id: 17, name: 'Beaded Bracelet', price: "$12.00", rating: 4.4, category: 'Jewelry', image: 'bracelet.jpg', tags: ['Handmade'] },
+          { id: 18, name: 'Vintage Handbag', price: "$55.00", rating: 4.8, category: 'Clothing', image: 'handbag.jpg', tags: ['Vintage'] },
+          { id: 18, name: 'Artisan Soap', price: "$7.00", rating: 4.1, category: 'Baked Goods', image: 'soap.jpg', tags: ['Handmade'] },
+          { id: 19, name: 'Knitted Blanket', price: "$80.00", rating: 4.9, category: 'Crochet Items', image: 'blanket.jpg', tags: ['Handmade'] },
+          { id: 20, name: 'Reusable Tote Bag', price: "$15.00", rating: 4.7, category: 'Thrifted Clothes', image: 'tote.jpg', tags: ['Sustainable'] },
+          { id: 21, name: 'Vintage Sunglasses', price: "$30.00", rating: 4.6, category: 'Clothing', image: 'sunglasses.jpg', tags: ['Vintage'] },
+          { id: 22, name: 'Handmade Candles', price: "$22.00", rating: 4.5, category: 'Baked Goods', image: 'candles.jpg', tags: ['Handmade'] },
+          { id: 23, name: 'Handcrafted Wooden Toy', price: "$28.00", rating: 4.3, category: 'Handmade', image: 'toy.jpg', tags: ['Handmade'] },
+          { id: 24, name: 'Vintage Phone Case', price: "$18.00", rating: 4.5, category: 'Accessories', image: 'phone_case.jpg', tags: ['Vintage'] },
+          { id: 25, name: 'Hand-painted Plant Pot', price: "$25.00", rating: 4.8, category: 'Home Decor', image: 'plant_pot.jpg', tags: ['Handmade'] },
+          { id: 26, name: 'Leather Wallet', price: "$35.00", rating: 4.6, category: 'Accessories', image: 'wallet.jpg', tags: ['Handmade'] },
+          { id: 27, name: 'Natural Face Cream', price: "$20.00", rating: 4.7, category: 'Skincare', image: 'face_cream.jpg', tags: ['Sustainable'] }
       ]
 
       this.product = products.find(product => product.id === parseInt(id));

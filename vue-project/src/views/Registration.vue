@@ -4,31 +4,31 @@
         <form @submit.prevent="signUp">
             <div class="form">
                 <div class="formElement">
-                    <label for="firstName">Nombre:</label>
-                    <input v-model="Name" type="text" id="Name" placeholder="Ingresa tu nombre y apellidos" required />
+                    <label for="firstName">Full Name:</label>
+                    <input v-model="Name" type="text" id="Name" placeholder="First and last name" required />
                 </div>
                 <div class="formElement">
-                    <label for="institutionalEmail">Email Institucional:</label>
-                    <input v-model="institutionalEmail" type="email" id="institutionalEmail" placeholder="Ingresa tu email institucional" required />
+                    <label for="institutionalEmail">Institutional Email:</label>
+                    <input v-model="institutionalEmail" type="email" id="institutionalEmail" placeholder="Enter your institutional email" required />
                 </div>
                 <div class="formElement">
-                    <label for="studentNumber">Número de Estudiante:</label>
+                    <label for="studentNumber">Student Number:</label>
                     <input 
                         v-model="formattedStudentNumber" 
                         @input="formatStudentNumber" 
                         type="text" 
                         id="studentNumber" 
-                        placeholder="Ingresa tu número de estudiante" 
+                        placeholder="Enter your student number" 
                         required 
                     />
                 </div>
                 <div class="formElement">
-                    <label for="signUpPassword">Contraseña:</label>
-                    <input v-model="signUpPassword" type="password" id="signUpPassword" placeholder="Crea tu contraseña" required />
+                    <label for="signUpPassword">Password:</label>
+                    <input v-model="signUpPassword" type="password" id="signUpPassword" placeholder="Create your password" required />
                 </div>
                 <div class="formElement">
-                    <label for="signUpPassword">Confirmar contraseña:</label>
-                    <input v-model="signUpPassword1" type="password" id="signUpPassword1" placeholder="Confirma tu contraseña" required />
+                    <label for="signUpPassword">Password Confirmation:</label>
+                    <input v-model="signUpPassword1" type="password" id="signUpPassword1" placeholder="Confirm your password" required />
                 </div>
 
                 <!-- CAPTCHA Section -->
@@ -36,24 +36,22 @@
                     <label for="captchaInput">Enter the CAPTCHA:</label>
                     <canvas id="captchaCanvas" width="100" height="40"></canvas>
                     <input v-model="captchaInput" type="text" id="captchaInput" placeholder="Enter CAPTCHA" required />
-                <p v-if="captchaError" class="error">{{ captchaError }}</p>
+                    <p v-if="captchaError" class="error">{{ captchaError }}</p>
                 </div>
 
                 <div class="formElement seller-question">
-                    <label for="isSeller">¿Eres vendedor?</label>
+                    <label for="isSeller">Are you a seller?</label>
                     <input type="checkbox" id="isSeller" v-model="isSeller" /> 
                 </div>
                 <div v-if="isSeller">
                     <div class="formElement">
-                        <label for="storeName">Nombre de la tienda:</label>
-                        <input v-model="storeName" type="text" id="storeName" placeholder="Ingresa el nombre de tu tienda" required />
+                        <label for="storeName">Shop name:</label>
+                        <input v-model="storeName" type="text" id="storeName" placeholder="Enter your shop name" required />
                     </div>
                 </div>
                 <div class="formElement">
-                    <button class="btn" type="submit">Registrarse</button>
+                    <button class="btn" type="submit">Sign Up</button>
                 </div>
-
-
             </div>
         </form> 
     </body>
@@ -107,7 +105,6 @@ export default {
                 this.refreshCaptcha();
                 return;
             }
-        
 
             alert(`Welcome, ${this.Name}! Your account has been created.`);
             if (this.isSeller) {
@@ -115,7 +112,6 @@ export default {
             } else {
                 this.$router.push('/home');
             }
-            
         },
 
         // Generate a new CAPTCHA
@@ -123,16 +119,16 @@ export default {
             const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             let captcha = "";
             for (let i = 0; i < 6; i++) {
-            captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+                captcha += characters.charAt(Math.floor(Math.random() * characters.length));
             }
             this.captcha = captcha;
-    
+
             // Render the CAPTCHA on the canvas
             const canvas = document.getElementById("captchaCanvas");
             const ctx = canvas.getContext("2d");
             ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous CAPTCHA
             ctx.font = "20px Arial";
-            ctx.fillStyle = "green";
+            ctx.fillStyle = "darkgreen";
             ctx.fillText(this.captcha, 10, 30); // Draw the CAPTCHA string
         },
     
@@ -140,7 +136,6 @@ export default {
         refreshCaptcha() {
             this.generateCaptcha();
         },
-        
     },
     mounted() {
         this.generateCaptcha(); // Generate CAPTCHA when the component mounts
@@ -149,75 +144,86 @@ export default {
 </script>
 
 <style scoped>
-    body {
-        height: 100%;
-        margin: 0;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
+body {
+    background-color: rgb(73, 95, 60);
+    height: 100%;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-    .title {
-        font-size: 3em;
-        color: green;
-        margin: 0px;
-        padding: 10px;
-    }
+.title {
+    font-size: 3em;
+    color: rgb(105, 238, 85);
+    margin: 0px;
+    padding: 10px;
+}
 
-    .form {
-        height: 80vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+.form {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    .formElement {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-        align-items: center;
-    }
+.formElement {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    align-items: center;
+}
 
-    .seller-question {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
+.btn {
+    padding: 5px 10px;
+    font-size: 1em;
+    color: hsl(0, 0%, 85%);
+    background-color: green;
+    border: 3px solid #495F3C;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
-    .btn {
-        margin-top: 20px;
-        padding: 5px 10px;
-        font-size: 1em;
-        color: white;
-        background-color: green;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-    }
+.btn:hover {
+    background-color: #495F3C;
+    border: 3px solid green;
+}
 
-    .btn:hover {
-        background-color: darkgreen;
-    }
+label {
+    margin-bottom: 8px;
+    font-size: 1.28em;
+    color: rgb(105, 238, 85);
+}
 
-    label {
-        margin-bottom: 5px;
-        font-size: 1em;
-        color: green;
-    }
+input {
+    background-color: hsl(98, 23%, 40%);
+    font-size: 1em;
+    border: 3px solid green;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100%;
+    max-width: 300px;
+    color: hsl(0, 0%, 85%);
+    outline: none;
 
-    input {
-        font-size: 1em;
-        border: 2px solid darkgreen;
-        border-radius: 10px;
-        padding: 5px;
-        width: 100%;
-        max-width: 300px;
-    }
+}
 
-    canvas {
-        border: 1px solid darkgreen;
-        margin-bottom: 10px;
-    }
+input::placeholder {
+    color: hsl(0, 0%, 85%);
+}
+
+.seller-question {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+canvas {
+    background-color: lightgreen;
+    border: 1px solid darkgreen;
+    margin-bottom: 10px;
+}
+
 </style>

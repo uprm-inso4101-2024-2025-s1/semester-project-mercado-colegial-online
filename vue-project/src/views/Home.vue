@@ -105,7 +105,7 @@ export default {
 .image-section {
   width: 100%; /* Full width of the viewport */
   height: 80vh; /* Adjust the height as needed */
-  background-image: url("../assets/background-search.jpg"); /* Correct path to your image */
+  background-image: url("../assets/bg.jpg"); /* Correct path to your image */
   background-size: cover; /* Cover ensures the image fills the section */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Prevent the image from repeating */
