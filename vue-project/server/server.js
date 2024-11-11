@@ -8,6 +8,7 @@ import { connect } from './db.js';
 /** Routes */
 import itemsRouter from './routes/items.js'
 import usersRouter from './routes/users.js'
+import reviewRouter from './routes/review.js'
 
 /** Express App setup */
 const app = express();
@@ -37,6 +38,7 @@ connect()
 /** Routes */
 app.use('/items', itemsRouter); 
 app.use('/users', usersRouter); 
+app.use('/review', reviewRouter);
 
 
 
