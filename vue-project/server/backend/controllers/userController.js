@@ -1,5 +1,5 @@
 import User from '../models/user.js';
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 import { sendEmail } from '../utils/EmailConfirmation.js';
 
 
