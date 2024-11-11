@@ -97,6 +97,7 @@ import Settings from '../views/Settings.vue';
 import ProductPage from '../views/ProductPage.vue';  // Import the ProductPage component
 import ProductSearchPage from '../views/ProductSearch.vue';
 import Cart from '../views/Cart.vue';
+import Profile from '@/views/Profile.vue';
 
 const routes = [
   {
@@ -133,6 +134,11 @@ const routes = [
     path: '/settings',  // New route for the Seller Login
     name: 'Settings',
     component: Settings,
+  },
+  {
+    path: '/profile',  // New route for profile
+    name: 'Profile',
+    component: Profile,
   },
   {
     path: '/product/:id',  // New route for the Product Page

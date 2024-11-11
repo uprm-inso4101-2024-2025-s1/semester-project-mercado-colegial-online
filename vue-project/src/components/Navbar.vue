@@ -13,7 +13,7 @@
       <router-link to="/productSearch" class="nav-item">
         <img src="../assets/products.png" alt=" " width="35" height="35" />
       </router-link>
-      <router-link to="/" class="nav-item">
+      <router-link to="/Profile" class="nav-item">
           <img src="../assets/accountAvatar.png" alt=" " width="35" height="35" />
       </router-link>
       <router-link to="/Cart" class="nav-item">
