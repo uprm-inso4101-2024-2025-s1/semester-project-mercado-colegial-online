@@ -139,14 +139,3 @@ app.post('/login', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-
-
-app.get('/confirm/:token', (req, res) => {
-    const token = req.params.token;
-    const secret = process.env.JWT_SECRET;
-
-    // try {
-    //     const decoded = jwt.verify(token, secret);
-    //     const user = users.find(u => u.id === decoded.id);
-    // }
-});

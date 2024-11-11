@@ -3,6 +3,12 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
   // Mongoose automatically creates an `_id` field (ObjectId), so no need to add `user_id`
   
+  isConfirmed: {
+    type: Boolean,
+    required: true,
+    default: false, // Default to false
+  },
+  
   username: {
     type: String,
     required: true,
@@ -10,7 +16,8 @@ const userSchema = new mongoose.Schema({
     minlength: 3,
     maxlength: 50,
   },
- 
+  
+
   email: {
     type: String,
     required: true,

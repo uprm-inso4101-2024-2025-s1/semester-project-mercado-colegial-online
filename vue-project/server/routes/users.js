@@ -5,7 +5,8 @@ import {
   getAllUsers,
   getUserById,
   updateUserById,
-  deleteUserById
+  deleteUserById,
+  confirmUser,
 } from '../backend/controllers/userController.js';  // Adjust path if necessary
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.get('/', getAllUsers);
 router.get('/:id', getUserById);
 router.put('/:id', updateUserById);
 router.delete('/:id', deleteUserById);
+router.get('/confirm/:token', confirmUser);
 
 export default router;

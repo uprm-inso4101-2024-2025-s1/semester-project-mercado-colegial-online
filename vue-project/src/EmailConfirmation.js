@@ -9,7 +9,7 @@ const generateToken = (user) => {
     return jwt.sign({ id: user.id, email: user.email }, import.meta.env.JWT_SECRET, { expiresIn: '1h' });
 };
 
-const sendEmail = async (userEmail, userId) => {
+export const sendEmail = async (userEmail, userId) => {
     const token = generateToken({ id: userId, email: userEmail });
 
     const confirmURL = `http://localhost:3000/confirm/${token}`;
@@ -42,5 +42,3 @@ try {
 }
 
 };
-
-module.exports = { sendEmail };
