@@ -6,7 +6,7 @@
     <aside class="sidebar">
       <ul>
         <li @click="selectOption('your profile')">Your Profile</li>
-        <li @click="selectedOption('settings')">Settings</li>
+        <li @click="selectOption('settings')"> Settings </li> 
         <li @click="selectOption('notifications')"> Notifications <span class="notification-count">3</span> </li> 
         <li @click="selectOption('sign out')">Sign Out</li>
       </ul>
@@ -15,8 +15,34 @@
     <!-- Main Content Area -->
     <main class="main-content">
       <h1>Profile</h1>
-      
+
+
+      <!-- Settings Option -->
       <div v-if="selectedOption === 'your profile'" class="form-container">
+        <form @submit.prevent="signUp">
+          <div class="form">
+            <div class="formElement">
+              <label for="Name">Full Name</label>
+            </div>
+            <div class="formElement">
+              <label for="institutionalEmail">Institutional Email</label>
+            </div>
+            <div class="formElement">
+              <label for="studentNumber">Student Number</label>
+             
+            </div>
+            <div class="formElement">
+              <label for="signUpPassword">Password</label>
+            </div>
+            <div v-if="isSeller" class="formElement">
+              <label for="storeName">Shop Name</label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+        <!-- Settings Option -->
+      <div v-if="selectedOption === 'settings'">
         <form @submit.prevent="signUp">
           <div class="form">
             <div class="formElement">
@@ -49,7 +75,10 @@
           </div>
         </form>
       </div>
+            <!-- Notification Option -->
+      <div v-if="selectedOption === 'notifications'">
 
+      </div>
       <!-- Sign Out Option -->
       <div v-if="selectedOption === 'sign out'">
         <router-link to="/LogIn">
