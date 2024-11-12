@@ -1,9 +1,20 @@
-const Order = require('../models/order');  // Import Order model
+import Order from '../models/order.js';  // Import Order model
 
 // Create an Order
-exports.createOrder = async (req, res) => {
+export const createOrder = async (req, res) => {
   try {
-    const newOrder = new Order(req.body);
+    // Convert user_id to ObjectId
+    const { user_id, total_price } = req.body;
+    
+    if (!mongoose.Types.ObjectId.isValid(user_id)) {
+      return res.status(400).json({ error: 'Invalid user_id format' });
+    }
+
+    const newOrder = new Order({
+      user_id: mongoose.Types.ObjectId(user_id), // Ensure user_id is an ObjectId
+      total_price,
+    });
+
     await newOrder.save();
     res.status(201).json(newOrder);
   } catch (error) {
@@ -13,7 +24,7 @@ exports.createOrder = async (req, res) => {
 };
 
 // Get all Orders
-exports.getAllOrders = async (req, res) => {
+export const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find();
     res.status(200).json(orders);
@@ -24,7 +35,7 @@ exports.getAllOrders = async (req, res) => {
 };
 
 // Get an Order by ID
-exports.getOrderById = async (req, res) => {
+export const getOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
     if (!order) {
@@ -38,7 +49,7 @@ exports.getOrderById = async (req, res) => {
 };
 
 // Update an Order by ID
-exports.updateOrderById = async (req, res) => {
+export const updateOrderById = async (req, res) => {
   try {
     const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, {
       new: true,  // Return the updated document
@@ -55,7 +66,7 @@ exports.updateOrderById = async (req, res) => {
 };
 
 // Delete an Order by ID
-exports.deleteOrderById = async (req, res) => {
+export const deleteOrderById = async (req, res) => {
   try {
     const deletedOrder = await Order.findByIdAndDelete(req.params.id);
     if (!deletedOrder) {
