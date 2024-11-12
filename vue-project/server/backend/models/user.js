@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   
   username: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
     minlength: 3,
     maxlength: 50,
@@ -26,6 +26,11 @@ const userSchema = new mongoose.Schema({
     minlength: 8, // Enforcing password length
   },
 
+  salt: {
+    type: String,
+    required: true,
+  },
+
   student_num: {
     type: Number,
     required: true,
@@ -40,53 +45,53 @@ const userSchema = new mongoose.Schema({
 
   card_num: {
     type: String, // Changed to string to avoid losing leading zeros
-    required: true,
+    required: false,
     minlength: 13,
     maxlength: 16,
   },
 
   card_name: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
   },
 
   cvv: {
     type: String, // Changed to string for leading zeros and consistent length
-    required: true,
+    required: false,
     minlength: 3,
     maxlength: 3,
   },
 
   card_zip: {
     type: String, // Changed to string for leading zeros
-    required: true,
+    required: false,
     minlength: 4,
     maxlength: 5, // Zip codes can vary (US zip codes have 5 digits)
   },
 
   shipping_zip: {
     type: String, // Changed to string for leading zeros
-    required: true,
+    required: false,
     minlength: 4,
     maxlength: 5,
   },
 
   addr_line_1: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
   },
 
   addr_line_2: {
     type: String,
-    trim: true,
+    trim: false,
     default: '', // Optional field
   },
 
   city: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
   },
 

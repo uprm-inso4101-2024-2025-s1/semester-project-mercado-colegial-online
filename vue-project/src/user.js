@@ -1,12 +1,12 @@
 class User {
     static userCount = 0;
 
-    constructor(fullName, username, email, phone, password) {
+    constructor(fullName, student_num, email, password, role) {
         this.fullName = fullName;
-        this.username = username;
+        this.student_num = student_num;
         this.email = email;
-        this.phone = phone;
         this.password = password;
+        this.role = role;
 
         User.userCount++;   // keeps track of how many users there are
     }
@@ -16,30 +16,29 @@ class User {
         this._fullName = newFullName;
     }
 
-    setusername(newUsername) {
-        this._username = newUsername;
+    setstudentNum(newStudentNum) {
+        this._student_num = newStudentNum;
     }
 
     setemail(newEmail) {
         this._email = newEmail;
     }
 
-    setphone(newPhone) {
-        this._phone = newPhone;
-    }
-
     setpassword(newPassword) {
         this._password = newPassword;
     }
 
+    setrole(newRole) {
+        this._role = newRole;
+    }
 
     // Getters
     getFullName() {
         return this.fullName;
     }
 
-    getUserName() {
-        return this.username;
+    getStudentNum() {
+        return this.student_num;
     }
 
     getEmail() {
@@ -50,26 +49,24 @@ class User {
         return this.password;
     }
 
-    getPhone() {
-        return this.phone;
+    getRole() {
+        return this.role;
     }
 
     // Display User info
     displayInfo() {
         console.log(`User's name: ${this.fullName}`);
-        console.log(`User's username: ${this.username}`);
         console.log(`User's email: ${this.email}`);
-        console.log(`User's phone: ${this.phone}`);
     }
 
     // Return data in json
     json() {
         return {
             fullName: this.fullName,
-            username: this.username,
+            student_num: this.student_num,
             email: this.email,
-            phone: this.phone,
-            password: this.password
+            password: this.password,
+            role: this.role
         };
     }
 }

@@ -1,9 +1,9 @@
 import express from "express";
 import bodyParser from "body-parser";
-import cors from 'cors'; 
-import crypto from 'crypto'; 
-import { connect } from './db.js'; 
-
+import cors from 'cors';
+import crypto from 'crypto';
+import { connect } from './db.js';
+import userModel from './backend/models/user.js';
 
 /** Routes */
 import itemsRouter from './routes/items.js'
@@ -14,16 +14,16 @@ const port = 3000;
 
 
 /** Parses incoming JSON request bodies to make it easier to handle data */
-app.use(bodyParser.json());     
+app.use(bodyParser.json());
 
 /** Enables Cross-Origin Resoruce Sharing, which allows the backend to handle requests from other domains */
-app.use(cors());    
+app.use(cors());
 
 /** Password Hashing Utilities */
-function hashPassword(password, salt){
-    return crypto.pbkdf2Sync(password,salt,1000,64,'sha512').toString('hex');
+function hashPassword(password, salt) {
+    return crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
 }
-function generateSalt(){
+function generateSalt() {
     return crypto.randomBytes(16).toString('hex');
 }
 
@@ -32,32 +32,30 @@ connect()
 
 
 /** Routes */
-app.use('/items', itemsRouter) ;
+app.use('/items', itemsRouter);
 
 
 
 async function addUser(newUser) {
     try {
-        await client.connect();
-        const database = client.db("sample_mflix");
-        const users = database.collection("users");
-        const result = await users.insertOne(newUser);
-        console.log(`New user created with the following id: ${result.insertedId}`);
-    } finally {
-        await client.close();
+        // convert newUser.student_num from the string 123-45-6789 to an integer 123456789
+        newUser.student_num = parseInt(newUser.student_num.replace(/-/g, ''));
+        const user = new userModel(newUser);
+        const result = await user.save();
+        console.log(`New user created with the following id: ${result._id}`);
+    } catch (e) {
+        console.error(e);
+        throw e;
     }
 }
 
-async function getUser(username) {
+async function getUser(email) {
     try {
-        await client.connect();
-        const database = client.db("sample_mflix");
-        const users = database.collection("users");
-        const user = await users.findOne({ username: username });
-        await client.close();
+        const user = await userModel.findOne({ email: email });
         return user;
     } catch (e) {
         console.error(e);
+        throw e;
     }
 }
 
@@ -73,11 +71,11 @@ app.post('/signup', (req, res) => {
     const receivedData = req.body;
 
     const { password } = receivedData;
-    if(!password){
-        return res.status(400).json({message: 'Password is required'});
+    if (!password) {
+        return res.status(400).json({ message: 'Password is required' });
     }
     const salt = generateSalt();
-    const hashedPass = hashPassword(password,salt);
+    const hashedPass = hashPassword(password, salt);
 
 
     //test
@@ -86,9 +84,9 @@ app.post('/signup', (req, res) => {
     console.log(`Salt: ${salt}`);
 
     addUser({ ...receivedData, password: hashedPass, salt }).then(() => {
-      res.json({ message: 'Signed Up successfully', data: receivedData });
+        res.json({ message: 'Signed Up successfully', data: receivedData });
     }).catch((e) => {
-      res.status(500).json({ message: 'Failed to sign up', error: e });
+        res.status(500).json({ message: 'Failed to sign up', error: e });
     });
 });
 
@@ -107,26 +105,26 @@ app.post('/login', (req, res) => {
 
     const { password } = receivedData;
 
-    getUser(receivedData.username).then((user) => {
+    getUser(receivedData.email).then((user) => {
 
-      if (!user) {
-          return res.status(404).json({ message: 'User not found' });
-      }
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
 
-      const hashedPass = hashPassword(password,user.salt);
+        const hashedPass = hashPassword(password, user.salt);
 
-      console.log(user);
-      console.log(`Original Password: ${password}`);
-      console.log(`Hashed Password: ${hashedPass}`);
-      console.log(`Salt: ${user.salt}`);
+        console.log(user);
+        console.log(`Original Password: ${password}`);
+        console.log(`Hashed Password: ${hashedPass}`);
+        console.log(`Salt: ${user.salt}`);
 
-      if (user.password !== hashedPass) {
-          return res.status(401).json({ message: 'Invalid credentials' });
-      }
+        if (user.password !== hashedPass) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
 
-      res.json({ message: 'Logged In successfully', data: receivedData });
+        res.json({ message: 'Logged In successfully', user });
     }).catch((e) => {
-      res.status(500).json({ message: 'Failed to login', error: e });
+        res.status(500).json({ message: 'Failed to login', error: e });
     });
 })
 

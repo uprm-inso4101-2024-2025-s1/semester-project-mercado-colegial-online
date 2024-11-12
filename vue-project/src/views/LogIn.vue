@@ -1,4 +1,5 @@
 <template>
+
     <body>
         <h1 class="title">Mercado Colegial</h1>
         <form @submit.prevent="login">
@@ -9,41 +10,71 @@
                 </div>
                 <div class="formElement">
                     <label for="password">Password:</label>
-                    <input v-model="password" type="password" id="password" placeholder="Enter password" required />
+                    <input v-model="password" type="password" id="password" placeholder="Enter password"
+                        required />
                 </div>
-                <router-link to="/home"> <!-- Change 'to' to "/seller-das" to make it go to the seller dashboard -->
-                    <div class="formElement">
-                        <button class="btn" type="submit">Log In</button>
-                    </div>
-                </router-link>
+                <div class="formElement">
+                    <button class="btn" type="submit">Log In</button>
+                </div>
             </div>
-        </form>   
+        </form>
     </body>
 </template>
 
 <script>
+import User from '../user.js'; // Import the User class
+import CryptoJS from 'crypto-js';
+
 export default {
     name: "LogIn",
     data() {
         return {
             email: "",
             password: "",
-            firstName: "",
-            lastName: "",
-            institutionalEmail: "",
-            studentNumber: "",
-            signUpPassword: "",
+            userArray: []
         };
     },
     methods: {
         login() {
-            // Simple hardcoded login logic
-            if (this.email === "client@upr.edu" && this.password === "password123") {
-                this.$router.push('/home');
-            } else if (this.email === "seller@upr.edu" && this.password === "password123") {
-                this.$router.push('/seller-dash');
+            if (this.email !== "" && this.password !== "") {
+                const hashedPassword = CryptoJS.SHA512(this.password).toString();
+
+                // Create a new User instance
+                const user1 = new User("", "", this.email, hashedPassword, "");
+                user1.displayInfo();
+                this.userArray.push(user1);
+                console.log('Users Array', { userArray: this.userArray });
+
+                // Send data to the server
+                fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    body: JSON.stringify(user1.json()),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message === "User not found") {
+                            alert("User not found. Please register first");
+                            return;
+                        } else if (data.message === "Invalid credentials") {
+                            alert("Invalid credentials. Please try again");
+                            return;
+                        } else if (data.message === 'Failed to login') {
+                            throw new Error("Failed to login");
+                        }
+                        localStorage.setItem('LocalUsersArray', JSON.stringify(this.userArray));
+                        if (data.user.isSeller) {
+                            this.$router.push('/seller-dash');
+                        } else {
+                            this.$router.push('/home');
+                        }
+                    })
+                    .catch(error => {
+                        alert("Error submitting data");
+                        console.error("Error:", error);
+                    });
             } else {
-                alert('Invalid email or password.');
+                alert("Please fill in all fields to continue");
             }
         },
     }
