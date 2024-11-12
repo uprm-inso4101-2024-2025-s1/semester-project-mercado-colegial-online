@@ -9,7 +9,7 @@
       </div>
       <div class="main-content">
         <p class="description">
-          Welcome to the official web platform of Mercado Colegial at UPR Mayagüez! Discover a vibrant marketplace where
+          Welcome to Mercado Colegial Online Project at UPR Mayagüez! Discover a vibrant marketplace where
           our talented community brings the campus to life with unique products, all in one place. Whether you’re
           looking for handcrafted goods, delicious treats, or exclusive campus merch, explore the best of what our
           student entrepreneurs have to offer—now available online!
@@ -44,7 +44,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #00a600;
+  background-color: #4A603C;
   padding: 2vh;
   box-sizing: border-box;
 }
@@ -86,7 +86,7 @@ export default {
 
 .colegial {
   display: block;
-  color: #00a600;
+  color: #536C44;
 }
 
 .main-content {
@@ -135,9 +135,11 @@ export default {
   width: 10vw;
   text-align: center;
   transition: background-color 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .btn:hover {
   background-color: #333333;
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4);
 }
 </style>
