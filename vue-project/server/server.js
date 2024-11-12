@@ -3,7 +3,8 @@ import bodyParser from "body-parser";
 import cors from 'cors'; 
 import crypto from 'crypto'; 
 import { connect } from './db.js'; 
-
+import dotenv from 'dotenv';
+dotenv.config();
 
 /** Routes */
 import itemsRouter from './routes/items.js'

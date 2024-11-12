@@ -78,7 +78,7 @@ export const confirmUser = async (req, res) => {
 
   try {
     // Verificar el token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, '6acff9bc63433db6e5492b75b85232b976a1b63f6afb4800552cc541c93ac6dd801e358f224b00425aaa82af5d9c387550e26764323b4c67055fd5205d5adaad');
 
     // Buscar el usuario en la base de datos por su ID
     const user = await User.findById(decoded.id);
