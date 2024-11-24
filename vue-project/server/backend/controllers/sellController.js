@@ -36,3 +36,34 @@ export const getSellById = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+// Update a sell by ID
+export const updateSellById = async (req, res) => {
+  try {
+    const updatedSell = await Sell.findByIdAndUpdate(req.params.id, req.body, {
+      new: true, // Return the updated document
+      runValidators: true, // Validate the data before updating
+    });
+    if (!updatedSell) {
+      return res.status(404).json({ error: 'Sell not found' });
+    }
+    res.status(200).json(updatedSell);
+  } catch (error) {
+    console.error('Error updating sell by ID:', error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// Delete a sell by ID
+export const deleteSellById = async (req, res) => {
+  try {
+    const deletedSell = await Sell.findByIdAndDelete(req.params.id);
+    if (!deletedSell) {
+      return res.status(404).json({ error: 'Sell not found' });
+    }
+    res.status(200).json({ message: 'Sell deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting sell by ID:', error);
+    res.status(500).json({ error: error.message });
+  }
+};
