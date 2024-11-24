@@ -1,14 +1,19 @@
-// routes/sell.js
 import express from 'express';
-import sellController from '../backend/controllers/sellController';
+import {
+  createSell,
+  getAllSells,
+  getSellById,
+  updateSellById,
+  deleteSellById,
+} from '../backend/controllers/sellController.js';
 
 const router = express.Router();
 router.use(express.json());
 
-router.post('/', sellController.addSell);
-router.get('/', sellController.getAllSells);
-router.get('/:id', sellController.getSellById);
-router.put('/:id', sellController.updateSell);
-router.delete('/:id', sellController.deleteSell);
+router.post('/', createSell);
+router.get('/', getAllSells);
+router.get('/:id', getSellById);
+router.put('/:id', updateSellById);
+router.delete('/:id', deleteSellById);
 
 export default router;
