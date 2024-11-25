@@ -54,25 +54,25 @@ describe('Sell Model DELETE Operations', () => {
     await Item.findByIdAndDelete(itemId);
   });
 
-//   // Test: Create a valid sell
-//   it('should create a valid sell', async () => {
-//     const sellData = {
-//       user_id: userId,
-//       item_id: itemId,
-//       quantity: 3,
-//       price: 59.97,
-//     };
+  // Test: Create a valid sell
+  it('should create a valid sell', async () => {
+    const sellData = {
+      user_id: userId,
+      item_id: itemId,
+      quantity: 3,
+      price: 59.97,
+    };
 
-//     const sell = new Sell(sellData);
-//     const savedSell = await sell.save();
-//     sellId = savedSell._id;
+    const sell = new Sell(sellData);
+    const savedSell = await sell.save();
+    sellId = savedSell._id;
 
-//     // Verify that the sell was created correctly
-//     expect(savedSell.user_id.toString()).toBe(userId.toString());
-//     expect(savedSell.item_id.toString()).toBe(itemId.toString());
-//     expect(savedSell.quantity).toBe(sellData.quantity);
-//     expect(savedSell.price).toBe(sellData.price);
-//   });
+    // Verify that the sell was created correctly
+    expect(savedSell.user_id.toString()).toBe(userId.toString());
+    expect(savedSell.item_id.toString()).toBe(itemId.toString());
+    expect(savedSell.quantity).toBe(sellData.quantity);
+    expect(savedSell.price).toBe(sellData.price);
+  });
 
 //   Test: Delete a sell by ID
   it('should delete a sell by ID', async () => {
@@ -82,4 +82,26 @@ describe('Sell Model DELETE Operations', () => {
     // Verify that the sell was deleted
     expect(sell).toBeNull();
   });
+   // Test: Should not create a sell with an invalid user
+   it('should not create a sell with an invalid user', async () => {
+    const sellData = {
+      user_id: new mongoose.Types.ObjectId(), // A non-existing user ID
+      item_id: itemId, // Assume itemId is valid from previous tests
+      quantity: 1,
+      price: 10.00,
+    };
+
+    const sell = new Sell(sellData);
+    await expect(sell.save()).rejects.toThrow(mongoose.Error.ValidationError);
+  });
+
+  // Test: Handle deletion of a non-existent sell gracefully
+  it('should handle the deletion of a non-existent sell gracefully', async () => {
+    const nonExistentSellId = new mongoose.Types.ObjectId(); // A non-existent sell ID
+    const result = await Sell.findByIdAndDelete(nonExistentSellId);
+
+    // Expect no sell to be found and deleted
+    expect(result).toBeNull();
+  });
 });
+

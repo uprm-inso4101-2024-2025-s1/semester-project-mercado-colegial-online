@@ -3,20 +3,28 @@ import User from './user.js';
 import Item from './item.js';
 
 const sellSchema = new mongoose.Schema({
-  sell_id: {
-    type: Number,
-    autoIncrement: true,
-    primaryKey: true,
-  },
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+    validate: {
+      validator: async function(value) {
+        const count = await mongoose.model('User').countDocuments({_id: value});
+        return count > 0;
+      },
+      message: 'User not found'
+    }
   },
   item_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Item',
     required: true,
+    validate: {
+      validator: async function (value) {
+        return Item.countDocuments({_id: value}).then(count => count > 0);
+      },
+      message: 'Item not found'
+    }
   },
   quantity: {
     type: Number,
@@ -32,10 +40,9 @@ const sellSchema = new mongoose.Schema({
   },
 }, {
   timestamps: true,
-  collection: 'Sell',
+  collection: 'sells', // Ensure the collection name is correct and typically lowercase
 });
 
 const Sell = mongoose.model('Sell', sellSchema);
 
-// Use ES Module export
 export default Sell;
