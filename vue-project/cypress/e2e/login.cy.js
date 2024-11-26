@@ -1,13 +1,16 @@
 describe('Pruebas de Login - Mercado Colegial', () => {
-  
+
+  const email = 'gayeye5879@anypng.com';
+  const password = 'password26';
+
     // Prueba 1: Inicio de sesión exitoso
     it('Debería autenticar con credenciales válidas y redirigir al dashboard', () => {
       // Navegar a la página de login
       cy.visit('/login'); // Cambia '/login' si tu ruta es diferente
   
       // Completar los campos de login con datos válidos
-      cy.get('[data-test-id="email-input"]').type('test@example.com'); // Correo válido
-      cy.get('[data-test-id="password-input"]').type('123456'); // Contraseña válida
+      cy.get('[data-test-id="email-input"]').type(email); // Correo válido
+      cy.get('[data-test-id="pass-input"]').type(password); // Contraseña válida
   
       // Hacer clic en el botón de login
       cy.get('[data-test-id="login-button"]').click();
@@ -22,8 +25,8 @@ describe('Pruebas de Login - Mercado Colegial', () => {
       cy.visit('/login');
   
       // Completar los campos de login con datos inválidos
-      cy.get('[data-test-id="email-input"]').type('invalid@example.com'); // Correo inválido
-      cy.get('[data-test-id="password-input"]').type('wrongpassword'); // Contraseña inválida
+      cy.get('[data-test-id="email-input"]').type(email); // Correo inválido
+      cy.get('[data-test-id="pass-input"]').type('wrongpassword'); // Contraseña inválida
   
       // Hacer clic en el botón de login
       cy.get('[data-test-id="login-button"]').click();
@@ -55,7 +58,7 @@ describe('Pruebas de Login - Mercado Colegial', () => {
   
       // Ingresar caracteres especiales en el email
       cy.get('[data-test-id="email-input"]').type('<script>alert("hack")</script>');
-      cy.get('[data-test-id="password-input"]').type('123456'); // Contraseña válida
+      cy.get('[data-test-id="pass-input"]').type(password); // Contraseña válida
   
       // Hacer clic en el botón de login
       cy.get('[data-test-id="login-button"]').click();
