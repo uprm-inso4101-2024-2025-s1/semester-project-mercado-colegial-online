@@ -13,23 +13,23 @@ class User {
 
     // Setters
     setfullName(newFullName) {
-        this._fullName = newFullName;
+        this.fullName = newFullName;
     }
 
     setstudentNum(newStudentNum) {
-        this._student_num = newStudentNum;
+        this.student_num = newStudentNum;
     }
 
     setemail(newEmail) {
-        this._email = newEmail;
+        this.email = newEmail;
     }
 
     setpassword(newPassword) {
-        this._password = newPassword;
+        this.password = newPassword;
     }
 
     setrole(newRole) {
-        this._role = newRole;
+        this.role = newRole;
     }
 
     // Getters
