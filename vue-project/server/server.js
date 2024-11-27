@@ -6,11 +6,11 @@ import { connect } from './db.js';
 import userModel from './backend/models/user.js';
 
 /** Routes */
-import itemsRouter from './routes/items.js'
-import usersRouter from './routes/users.js'
-import reviewRouter from './routes/review.js'
-import orderRouter from './routes/order.js'
-
+import itemsRouter from './routes/items.js'; 
+import usersRouter from './routes/users.js'; 
+import sellRouter from './routes/sell.js';
+import reviewRouter from './routes/review.js';
+import orderRouter from './routes/order.js';
 
 /** Express App setup */
 const app = express();
@@ -38,6 +38,7 @@ connect()
 /** Routes */
 app.use('/items', itemsRouter);
 app.use('/users', usersRouter); 
+app.use('/sell', sellRouter);
 app.use('/review', reviewRouter);
 app.use('/order', orderRouter);
 
