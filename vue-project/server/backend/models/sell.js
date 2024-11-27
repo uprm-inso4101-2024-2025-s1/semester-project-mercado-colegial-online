@@ -1,40 +1,48 @@
-const mongoose = require('mongoose');
-const User = require('./user');  //Uses the existing User model
-const Item = require('./item');  //Uses the existing Item model
+import mongoose from 'mongoose';
+import User from './user.js';
+import Item from './item.js';
 
 const sellSchema = new mongoose.Schema({
-  sell_id: {
-    type: Number,
-    autoIncrement: true,  
-    primaryKey: true
-  },
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',  // References the User model
-    required: true
+    ref: 'User',
+    required: true,
+    validate: {
+      validator: async function(value) {
+        const count = await mongoose.model('User').countDocuments({_id: value});
+        return count > 0;
+      },
+      message: 'User not found'
+    }
   },
   item_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Item',  // References the Item model
-    required: true
+    ref: 'Item',
+    required: true,
+    validate: {
+      validator: async function (value) {
+        return Item.countDocuments({_id: value}).then(count => count > 0);
+      },
+      message: 'Item not found'
+    }
   },
   quantity: {
     type: Number,
-    default: 1
+    default: 1,
   },
   price: {
     type: Number,
-    required: true
+    required: true,
   },
   date_listed: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 }, {
-  timestamps: true,  // Enable auto-generated timestamps 
-  collection: 'Sell'  
+  timestamps: true,
+  collection: 'sells', // Ensure the collection name is correct and typically lowercase
 });
 
 const Sell = mongoose.model('Sell', sellSchema);
 
-module.exports = Sell;
+export default Sell;
