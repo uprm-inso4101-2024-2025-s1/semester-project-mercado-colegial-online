@@ -41,7 +41,8 @@ connect()
 app.use('/items', itemsRouter); 
 app.use('/users', usersRouter); 
 app.use('/sell', sellRouter);
-
+app.use('/review', reviewRouter);
+app.use('/order', orderRouter);
 
 /** Signup Route */
 
