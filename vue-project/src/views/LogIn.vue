@@ -6,15 +6,14 @@
             <div class="form">
                 <div class="formElement">
                     <label for="email">Email:</label>
-                    <input v-model="email" type="email" id="email" placeholder="Enter email" required />
+                    <input v-model="email" type="email" id="email" placeholder="Enter email" required data-test-id="email-input"/>
                 </div>
                 <div class="formElement">
                     <label for="password">Password:</label>
-                    <input v-model="password" type="password" id="password" placeholder="Enter password"
-                        required />
+                    <input v-model="password" type="password" id="password" placeholder="Enter password" required data-test-id="pass-input"/>
                 </div>
                 <div class="formElement">
-                    <button class="btn" type="submit">Log In</button>
+                    <button class="btn" type="submit" data-test-id="login-button">Log In</button>
                 </div>
             </div>
         </form>
