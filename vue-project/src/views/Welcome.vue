@@ -16,11 +16,11 @@
         </p>
         <div class="button-group">
           <router-link to="/login">
-            <button class="btn login">Seller</button>
+            <button class="btn login">Log In</button>
           </router-link>
           <p class="or-text">or</p>
           <router-link to="/registration">
-            <button class="btn sign-up">Client</button>
+            <button class="btn sign-up">Sign Up</button>
           </router-link>
         </div>
       </div>
